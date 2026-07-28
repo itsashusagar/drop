@@ -97,10 +97,10 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans pb-28 sm:pb-0 animate-fadeIn max-w-full overflow-x-hidden">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans pb-28 sm:pb-0 animate-fadeIn w-full">
       
       {/* Top Breadcrumb & Quick Sticky Nav Bar */}
-      <div className="bg-white border-b border-slate-200 sticky top-14 sm:top-16 z-30 shadow-sm">
+      <div className="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-[72px] sm:top-[80px] z-30 shadow-sm">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 flex items-center justify-between text-xs gap-2">
           
           <div className="flex items-center gap-1.5 text-slate-500 overflow-x-auto whitespace-nowrap scrollbar-none max-w-[70%] sm:max-w-none">
@@ -241,8 +241,8 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
             </div>
 
-            {/* Right Column: BOOKING CARD SIDEBAR (Sticky on Desktop, Normal Card on Mobile) */}
-            <div className="lg:col-span-4 lg:sticky lg:top-28 z-20">
+            {/* Right Column: BOOKING CARD SIDEBAR (Sticky on Desktop with internal scroll, Normal Card on Mobile) */}
+            <div className="lg:col-span-4 lg:sticky lg:top-24 lg:max-h-[calc(100vh-110px)] lg:overflow-y-auto scrollbar-none z-20">
               <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-lg sm:shadow-2xl space-y-4 sm:space-y-5 text-slate-900">
                 
                 {/* Header Price & Coupon Callout */}
