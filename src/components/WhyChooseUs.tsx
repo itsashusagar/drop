@@ -99,34 +99,6 @@ export const WhyChooseUs: React.FC = () => {
           ))}
         </div>
 
-        {/* Featured Callout Banner for Solo Female Travelers */}
-        <div className="bg-gradient-to-r from-blue-50 via-indigo-50/70 to-slate-50 border border-blue-200 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-[#2956B1] text-white flex items-center justify-center shrink-0 shadow-lg shadow-[#2956B1]/20">
-              <Heart className="w-7 h-7 fill-white" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-[#2956B1] uppercase tracking-wider mb-0.5">First Time Solo Traveler?</div>
-              <h4 className="text-lg sm:text-xl font-extrabold text-slate-900">
-                Over 45% of Our Backpackers Are Solo Females!
-              </h4>
-              <p className="text-xs text-slate-600 mt-1 max-w-xl">
-                We assign female trip leaders and ensure twin-sharing rooms with verified co-travelers of your choice.
-              </p>
-            </div>
-          </div>
-
-          <a
-            href="https://wa.me/919560798341?text=Hi%20Trip%20With%20Safarwala!%20I%20am%20a%20solo%20traveler%20and%20want%20to%20know%20more%20about%20safety%20and%20group%20batches."
-            target="_blank"
-            rel="noreferrer"
-            className="bg-[#2956B1] hover:bg-blue-700 text-white font-extrabold text-xs px-6 py-3.5 rounded-2xl shadow-md flex items-center gap-2 transition whitespace-nowrap active:scale-95"
-          >
-            <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
-            <span>Chat With Female Captain</span>
-          </a>
-        </div>
-
       </div>
     </section>
   );
