@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Phone, Heart, Menu, X, Sparkles, MapPin, Building2, Compass, ArrowRight } from 'lucide-react';
+import { Phone, Heart, Menu, X, Sparkles, MapPin, Building2, Compass, ArrowRight, UserCheck, Star, Package } from 'lucide-react';
 
 interface NavbarProps {
   wishlistCount: number;
@@ -80,68 +80,65 @@ export const Navbar: React.FC<NavbarProps> = ({
           </Link>
 
           {/* Desktop Nav Links - Apple Pill Style */}
-          <nav className="hidden lg:flex items-center gap-1 text-xs font-bold text-slate-700 bg-slate-900/[0.03] p-1.5 rounded-full border border-slate-900/[0.05] backdrop-blur-md">
+          <nav className="hidden lg:flex items-center gap-1.5 text-xs font-bold text-slate-700 bg-slate-900/[0.04] p-1.5 rounded-full border border-slate-900/10 backdrop-blur-xl shadow-inner">
             <a
               href="#destinations"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('categories');
               }}
-              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer shadow-none hover:shadow-sm"
+              className="hover:text-[#2956B1] hover:bg-white/90 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
             >
               <MapPin className="w-3.5 h-3.5 text-[#2956B1]" />
               <span>Destinations</span>
             </a>
+
             <a
               href="#packages"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('packages');
               }}
-              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:shadow-sm"
+              className="hover:text-[#2956B1] hover:bg-white/90 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
             >
-              Group Tours
+              <Package className="w-3.5 h-3.5 text-[#2956B1]" />
+              <span>Packages</span>
             </a>
+
             <a
-              href="#packages"
+              href="#captains"
               onClick={(e) => {
                 e.preventDefault();
-                handleNavClick('packages');
+                handleNavClick('captains');
               }}
-              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:shadow-sm"
+              className="hover:text-[#2956B1] hover:bg-white/90 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
             >
-              Himalayan Treks
+              <UserCheck className="w-3.5 h-3.5 text-[#2956B1]" />
+              <span>Captains</span>
             </a>
-            <a
-              href="#why-us"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('why-us');
-              }}
-              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:shadow-sm"
-            >
-              Why Us
-            </a>
+
             <a
               href="#branches"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('branches');
               }}
-              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
+              className="hover:text-[#2956B1] hover:bg-white/90 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
             >
               <Building2 className="w-3.5 h-3.5 text-[#2956B1]" />
               <span>Branches</span>
             </a>
+
             <a
               href="#reviews"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('reviews');
               }}
-              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:shadow-sm"
+              className="hover:text-[#2956B1] hover:bg-white/90 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
             >
-              Reviews
+              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+              <span>Reviews</span>
             </a>
           </nav>
 

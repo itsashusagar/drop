@@ -9,6 +9,7 @@ import { SearchFilter } from '@/components/SearchFilter';
 import { CategoryPills } from '@/components/CategoryPills';
 import { PackageCard } from '@/components/PackageCard';
 import { WhyChooseUs } from '@/components/WhyChooseUs';
+import { TripCaptains } from '@/components/TripCaptains';
 import { TourStats } from '@/components/TourStats';
 import { BranchOffices } from '@/components/BranchOffices';
 import { ReviewsSection } from '@/components/ReviewsSection';
@@ -288,6 +289,9 @@ export default function Home() {
 
       {/* Why Choose Trip With Safarwala Section */}
       <WhyChooseUs />
+
+      {/* Meet Our Certified Trip Captains Section */}
+      <TripCaptains />
 
       {/* Branch Offices Section */}
       <BranchOffices />
