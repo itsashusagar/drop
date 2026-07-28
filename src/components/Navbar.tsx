@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Phone, Heart, Menu, X, Sparkles, MapPin, Building2, Compass } from 'lucide-react';
+import { Phone, Heart, Menu, X, Sparkles, MapPin, Building2 } from 'lucide-react';
 
 interface NavbarProps {
   wishlistCount: number;
@@ -172,10 +172,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Request Callback */}
             <button
               onClick={() => onOpenInquiry()}
-              className="bg-gradient-to-r from-[#2956B1] via-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs px-5 py-2 rounded-full shadow-lg shadow-[#2956B1]/25 hover:shadow-xl hover:shadow-[#2956B1]/40 transition-all duration-300 active:scale-95 cursor-pointer flex items-center gap-1.5"
+              className="bg-gradient-to-r from-[#2956B1] via-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs px-5 py-2 rounded-full shadow-lg shadow-[#2956B1]/25 hover:shadow-xl hover:shadow-[#2956B1]/40 transition-all duration-300 active:scale-95 cursor-pointer"
             >
-              <Compass className="w-3.5 h-3.5 text-white" />
-              <span>Plan My Trip</span>
+              Plan My Trip
             </button>
           </div>
 
@@ -269,10 +268,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenInquiry();
               }}
-              className="w-full bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-bold text-xs py-3 rounded-full shadow-md flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-bold text-xs py-3 rounded-full shadow-md"
             >
-              <Compass className="w-4 h-4 text-white" />
-              <span>Request Custom Itinerary</span>
+              Request Custom Itinerary
             </button>
             <a
               href="tel:+919560798341"
