@@ -7,7 +7,7 @@ export const CATEGORIES: Category[] = [
     iconName: 'Users',
     description: 'Join vibrant group trips with verified captains & solo travelers',
     count: 24,
-    image: 'https://images.unsplash.com/photo-1539635273304-0e566867e3a3?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 'spiti-ladakh',

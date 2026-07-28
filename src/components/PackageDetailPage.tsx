@@ -25,6 +25,11 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
   onBack,
   onOpenInquiry,
 }) => {
+  // Always scroll to top when package detail page opens or changes
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pkg.id]);
+
   // Gallery slider state
   const [selectedImage, setSelectedImage] = useState(pkg.coverImage);
 
@@ -186,17 +191,6 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     <span>Guaranteed Departure</span>
                   </div>
                 </div>
-
-                {/* Instant Seat Scarcity Banner */}
-                <div className="absolute bottom-4 left-4 right-4 bg-slate-900/80 backdrop-blur-md border border-white/20 p-3 rounded-2xl text-white flex items-center justify-between shadow-2xl">
-                  <div className="flex items-center gap-2 text-xs font-bold">
-                    <Flame className="w-4 h-4 text-amber-400 animate-bounce" />
-                    <span>Selected Batch: <span className="text-amber-300">{selectedBatch.startDate}</span></span>
-                  </div>
-                  <span className="text-[11px] font-extrabold bg-red-500 text-white px-2.5 py-0.5 rounded-lg">
-                    🔥 Only {selectedBatch.availableSeats} Seats Remaining!
-                  </span>
-                </div>
               </div>
 
               {/* Thumbnails Row */}
@@ -277,8 +271,8 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                 </div>
 
                 {/* 1. Departure Date Selector */}
-                <div>
-                  <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-wider mb-1.5">
+                <div className="space-y-2">
+                  <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-wider">
                     1. Select Departure Batch Date
                   </label>
                   <select
@@ -295,6 +289,29 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                       </option>
                     ))}
                   </select>
+
+                  {/* Active Selected Batch & Seat Scarcity Info */}
+                  <div className="bg-amber-50/80 border border-amber-200/90 rounded-2xl p-3 flex items-center justify-between shadow-sm">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                        <Calendar className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-800">
+                          <span className="text-[#2956B1]">{selectedBatch.startDate}</span> to <span className="text-[#2956B1]">{selectedBatch.endDate}</span>
+                        </div>
+                        <div className="text-[10px] text-emerald-600 font-extrabold flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3" />
+                          <span>Guaranteed Departure</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1 bg-amber-500 text-white px-2.5 py-1 rounded-xl text-[10px] font-black shadow-sm shrink-0">
+                      <Flame className="w-3 h-3 fill-white text-white animate-pulse" />
+                      <span>{selectedBatch.availableSeats} Seats Left</span>
+                    </div>
+                  </div>
                 </div>
 
                 {/* 2. Travelers Count & Room Type */}

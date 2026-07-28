@@ -38,6 +38,13 @@ export default function Home() {
   // Selected package for detailed page view
   const [selectedPackage, setSelectedPackage] = useState<TravelPackage | null>(null);
 
+  const handleSelectPackage = (pkg: TravelPackage | null) => {
+    setSelectedPackage(pkg);
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  };
+
   // Inquiry modal state
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
   const [inquiryTripTitle, setInquiryTripTitle] = useState('');
@@ -156,12 +163,12 @@ export default function Home() {
           wishlistCount={wishlist.length}
           onOpenInquiry={handleOpenInquiry}
           onOpenWishlist={() => setWishlistDrawerOpen(true)}
-          onGoHome={() => setSelectedPackage(null)}
+          onGoHome={() => handleSelectPackage(null)}
         />
 
         <PackageDetailPage
           pkg={selectedPackage}
-          onBack={() => setSelectedPackage(null)}
+          onBack={() => handleSelectPackage(null)}
           onOpenInquiry={handleOpenInquiry}
         />
 
@@ -176,7 +183,7 @@ export default function Home() {
           onClose={() => setWishlistDrawerOpen(false)}
           wishlistedPackages={wishlistedPackages}
           onRemoveWishlist={toggleWishlist}
-          onSelectPackage={(pkg) => setSelectedPackage(pkg)}
+          onSelectPackage={(pkg) => handleSelectPackage(pkg)}
           onOpenInquiry={handleOpenInquiry}
         />
       </div>
@@ -191,10 +198,7 @@ export default function Home() {
         wishlistCount={wishlist.length}
         onOpenInquiry={handleOpenInquiry}
         onOpenWishlist={() => setWishlistDrawerOpen(true)}
-        onGoHome={() => {
-          setSelectedPackage(null);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
+        onGoHome={() => handleSelectPackage(null)}
       />
 
       {/* Hero Section */}
@@ -204,7 +208,7 @@ export default function Home() {
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
         onOpenInquiry={() => handleOpenInquiry('Custom Group Tour')}
-        onSelectPackage={(pkg) => setSelectedPackage(pkg)}
+        onSelectPackage={(pkg) => handleSelectPackage(pkg)}
       />
 
       {/* Search Filter Bar */}
@@ -253,7 +257,7 @@ export default function Home() {
                 pkg={pkg}
                 isWishlisted={wishlist.includes(pkg.id)}
                 onToggleWishlist={toggleWishlist}
-                onSelectPackage={(p) => setSelectedPackage(p)}
+                onSelectPackage={(p) => handleSelectPackage(p)}
                 onOpenInquiry={handleOpenInquiry}
               />
             ))}
@@ -315,7 +319,7 @@ export default function Home() {
         onClose={() => setWishlistDrawerOpen(false)}
         wishlistedPackages={wishlistedPackages}
         onRemoveWishlist={toggleWishlist}
-        onSelectPackage={(pkg) => setSelectedPackage(pkg)}
+        onSelectPackage={(pkg) => handleSelectPackage(pkg)}
         onOpenInquiry={handleOpenInquiry}
       />
 
