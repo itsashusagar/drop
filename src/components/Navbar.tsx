@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Phone, Heart, Menu, X, Sparkles, MapPin, Building2 } from 'lucide-react';
+import { Phone, Heart, Menu, X, Sparkles, MapPin, Building2, Compass } from 'lucide-react';
 
 interface NavbarProps {
   wishlistCount: number;
@@ -32,14 +32,17 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/75 backdrop-blur-xl border-b border-slate-200/70 text-slate-900 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300">
-      {/* Top Banner Notice */}
-      <div className="bg-gradient-to-r from-[#2956B1] via-blue-700 to-indigo-800 text-white text-xs font-semibold py-1.5 px-4 text-center flex items-center justify-center gap-2">
-        <Sparkles className="w-3.5 h-3.5 animate-pulse text-amber-300" />
+    <header className="sticky top-0 z-40 bg-white/65 backdrop-blur-2xl saturate-180 border-b border-white/50 text-slate-900 shadow-[0_10px_35px_rgba(0,0,0,0.03)] transition-all duration-300 relative">
+      {/* Apple Subtle Top Highlight Bar */}
+      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+
+      {/* Top Banner Notice - Translucent Dark Glass */}
+      <div className="bg-slate-950/90 backdrop-blur-xl text-white text-[11px] sm:text-xs font-medium py-1.5 px-4 text-center flex items-center justify-center gap-2 border-b border-white/10">
+        <Sparkles className="w-3.5 h-3.5 animate-pulse text-amber-300 shrink-0" />
         <span>Monsoon & Independence Day Travel Batches Now Open! Flat ₹2000 Off on Early Bookings</span>
         <button 
           onClick={() => onOpenInquiry('Early Bird Special Discount')} 
-          className="underline hover:text-amber-200 font-bold ml-1"
+          className="underline hover:text-amber-300 font-extrabold ml-1 cursor-pointer transition-colors"
         >
           Claim Coupon
         </button>
@@ -76,18 +79,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-700">
+          {/* Desktop Nav Links - Apple Pill Style */}
+          <nav className="hidden lg:flex items-center gap-1 text-xs font-bold text-slate-700 bg-slate-900/[0.03] p-1.5 rounded-full border border-slate-900/[0.05] backdrop-blur-md">
             <a
               href="#destinations"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick('categories');
               }}
-              className="hover:text-[#2956B1] transition-colors flex items-center gap-1 cursor-pointer"
+              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer shadow-none hover:shadow-sm"
             >
-              <MapPin className="w-4 h-4 text-[#2956B1]" />
-              Destinations
+              <MapPin className="w-3.5 h-3.5 text-[#2956B1]" />
+              <span>Destinations</span>
             </a>
             <a
               href="#packages"
@@ -95,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 e.preventDefault();
                 handleNavClick('packages');
               }}
-              className="hover:text-[#2956B1] transition-colors cursor-pointer"
+              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:shadow-sm"
             >
               Group Tours
             </a>
@@ -105,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 e.preventDefault();
                 handleNavClick('packages');
               }}
-              className="hover:text-[#2956B1] transition-colors cursor-pointer"
+              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:shadow-sm"
             >
               Himalayan Treks
             </a>
@@ -115,7 +118,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 e.preventDefault();
                 handleNavClick('why-us');
               }}
-              className="hover:text-[#2956B1] transition-colors cursor-pointer"
+              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:shadow-sm"
             >
               Why Us
             </a>
@@ -125,10 +128,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 e.preventDefault();
                 handleNavClick('branches');
               }}
-              className="hover:text-[#2956B1] transition-colors flex items-center gap-1 cursor-pointer"
+              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
             >
-              <Building2 className="w-4 h-4 text-[#2956B1]" />
-              Branches
+              <Building2 className="w-3.5 h-3.5 text-[#2956B1]" />
+              <span>Branches</span>
             </a>
             <a
               href="#reviews"
@@ -136,31 +139,31 @@ export const Navbar: React.FC<NavbarProps> = ({
                 e.preventDefault();
                 handleNavClick('reviews');
               }}
-              className="hover:text-[#2956B1] transition-colors cursor-pointer"
+              className="hover:text-[#2956B1] hover:bg-white/80 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:shadow-sm"
             >
               Reviews
             </a>
           </nav>
 
-          {/* Action Buttons */}
-          <div className="hidden sm:flex items-center gap-4">
+          {/* Action Buttons - Apple Capsule Glass Controls */}
+          <div className="hidden sm:flex items-center gap-3">
             <a 
               href="tel:+919560798341" 
-              className="flex items-center gap-2 text-xs font-bold text-slate-800 hover:text-[#2956B1] px-3.5 py-2 rounded-xl bg-white/70 hover:bg-white border border-slate-200/80 shadow-sm backdrop-blur-md transition-all duration-200"
+              className="flex items-center gap-2 text-xs font-bold text-slate-800 hover:text-[#2956B1] px-4 py-2 rounded-full bg-slate-900/[0.04] hover:bg-white/90 border border-slate-900/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] backdrop-blur-xl transition-all duration-300 active:scale-95"
             >
               <Phone className="w-3.5 h-3.5 text-[#2956B1]" />
-              +91 95607 98341
+              <span>+91 95607 98341</span>
             </a>
 
             {/* Wishlist Button */}
             <button
               onClick={onOpenWishlist}
-              className="relative p-2.5 rounded-xl bg-white/70 hover:bg-white border border-slate-200/80 hover:border-[#2956B1]/50 hover:text-[#2956B1] transition-all duration-200 text-slate-800 shadow-sm backdrop-blur-md"
+              className="relative p-2.5 rounded-full bg-slate-900/[0.04] hover:bg-white/90 border border-slate-900/10 hover:border-[#2956B1]/40 text-slate-800 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] backdrop-blur-xl transition-all duration-300 active:scale-95 cursor-pointer"
               title="Saved Trips"
             >
-              <Heart className={`w-5 h-5 ${wishlistCount > 0 ? 'fill-[#2956B1] text-[#2956B1]' : ''}`} />
+              <Heart className={`w-4 h-4 ${wishlistCount > 0 ? 'fill-[#2956B1] text-[#2956B1]' : ''}`} />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#2956B1] text-white font-extrabold text-[11px] flex items-center justify-center shadow-md">
+                <span className="absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full bg-[#2956B1] text-white font-extrabold text-[10px] flex items-center justify-center shadow-md">
                   {wishlistCount}
                 </span>
               )}
@@ -169,9 +172,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Request Callback */}
             <button
               onClick={() => onOpenInquiry()}
-              className="bg-gradient-to-r from-[#2956B1] to-blue-600 hover:from-blue-700 hover:to-blue-800 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl shadow-lg shadow-[#2956B1]/25 hover:shadow-xl hover:shadow-[#2956B1]/35 transition-all duration-200 active:scale-95 cursor-pointer"
+              className="bg-gradient-to-r from-[#2956B1] via-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs px-5 py-2 rounded-full shadow-lg shadow-[#2956B1]/25 hover:shadow-xl hover:shadow-[#2956B1]/40 transition-all duration-300 active:scale-95 cursor-pointer flex items-center gap-1.5"
             >
-              Plan My Trip
+              <Compass className="w-3.5 h-3.5 text-white" />
+              <span>Plan My Trip</span>
             </button>
           </div>
 
@@ -179,9 +183,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex sm:hidden items-center gap-2">
             <button
               onClick={onOpenWishlist}
-              className="relative p-2 rounded-xl bg-white/70 border border-slate-200/80 text-slate-800 shadow-sm backdrop-blur-md"
+              className="relative p-2 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-800 backdrop-blur-xl"
             >
-              <Heart className={`w-5 h-5 ${wishlistCount > 0 ? 'fill-[#2956B1] text-[#2956B1]' : ''}`} />
+              <Heart className={`w-4.5 h-4.5 ${wishlistCount > 0 ? 'fill-[#2956B1] text-[#2956B1]' : ''}`} />
               {wishlistCount > 0 && (
                 <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#2956B1] text-white font-bold text-[10px] flex items-center justify-center">
                   {wishlistCount}
@@ -191,18 +195,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/70 border border-slate-200/80 text-slate-800 shadow-sm backdrop-blur-md"
+              className="p-2 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-800 backdrop-blur-xl"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu - Ultra Frosted Glass */}
       {mobileMenuOpen && (
-        <div className="sm:hidden bg-white/95 backdrop-blur-2xl border-b border-slate-200/80 px-4 pt-3 pb-6 space-y-3 shadow-2xl animate-fadeIn">
+        <div className="sm:hidden bg-white/85 backdrop-blur-3xl saturate-180 border-b border-white/50 px-4 pt-3 pb-6 space-y-3 shadow-2xl animate-fadeIn">
           <a
             href="#destinations"
             onClick={(e) => {
@@ -210,7 +214,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               setMobileMenuOpen(false);
               handleNavClick('categories');
             }}
-            className="block py-2 text-sm font-semibold text-slate-700 hover:text-[#2956B1]"
+            className="block py-2 text-xs font-bold text-slate-800 hover:text-[#2956B1]"
           >
             Explore Destinations
           </a>
@@ -221,7 +225,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               setMobileMenuOpen(false);
               handleNavClick('packages');
             }}
-            className="block py-2 text-sm font-semibold text-slate-700 hover:text-[#2956B1]"
+            className="block py-2 text-xs font-bold text-slate-800 hover:text-[#2956B1]"
           >
             Group Packages
           </a>
@@ -232,7 +236,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               setMobileMenuOpen(false);
               handleNavClick('why-us');
             }}
-            className="block py-2 text-sm font-semibold text-slate-700 hover:text-[#2956B1]"
+            className="block py-2 text-xs font-bold text-slate-800 hover:text-[#2956B1]"
           >
             Why Trip With Safarwala
           </a>
@@ -243,7 +247,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               setMobileMenuOpen(false);
               handleNavClick('branches');
             }}
-            className="block py-2 text-sm font-semibold text-slate-700 hover:text-[#2956B1]"
+            className="block py-2 text-xs font-bold text-slate-800 hover:text-[#2956B1]"
           >
             Our Delhi Branch
           </a>
@@ -254,24 +258,25 @@ export const Navbar: React.FC<NavbarProps> = ({
               setMobileMenuOpen(false);
               handleNavClick('reviews');
             }}
-            className="block py-2 text-sm font-semibold text-slate-700 hover:text-[#2956B1]"
+            className="block py-2 text-xs font-bold text-slate-800 hover:text-[#2956B1]"
           >
             Customer Reviews
           </a>
 
-          <div className="pt-3 border-t border-slate-200 flex flex-col gap-2">
+          <div className="pt-3 border-t border-slate-900/10 flex flex-col gap-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenInquiry();
               }}
-              className="w-full bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-bold text-sm py-3 rounded-xl shadow-md"
+              className="w-full bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-bold text-xs py-3 rounded-full shadow-md flex items-center justify-center gap-2"
             >
-              Request Custom Itinerary
+              <Compass className="w-4 h-4 text-white" />
+              <span>Request Custom Itinerary</span>
             </button>
             <a
               href="tel:+919560798341"
-              className="w-full text-center text-xs font-semibold py-2.5 rounded-xl bg-slate-100 text-slate-800 border border-slate-200"
+              className="w-full text-center text-xs font-bold py-2.5 rounded-full bg-slate-900/[0.05] text-slate-800 border border-slate-900/10"
             >
               Call Us: +91 95607 98341
             </a>
