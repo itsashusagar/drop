@@ -5,11 +5,10 @@ import Link from 'next/link';
 import { TravelPackage, BatchDate } from '@/types/travel';
 import { PACKAGES, REVIEWS } from '@/data/packages';
 import {
-  MapPin, Clock, Star, Heart, ArrowRight, MessageCircle, Phone, Check, X,
-  Calendar, Shield, Sparkles, Building, Car, Utensils, Compass, UserCheck,
-  Tag, CreditCard, HelpCircle, Video, CheckCircle2, ChevronDown, ChevronUp,
-  Share2, ArrowLeft, ExternalLink, Percent, ShieldCheck, Plus, AlertCircle,
-  Flame, Zap, Award, CheckCircle, Navigation, ThumbsUp
+  MapPin, Clock, Star, Heart, ArrowRight, Check, X,
+  Calendar, Sparkles, Building, Car, Utensils, Compass, UserCheck,
+  CheckCircle2, ChevronDown, ChevronUp, Share2, ArrowLeft,
+  ShieldCheck, CheckCircle, Video, Flame
 } from 'lucide-react';
 import { Footer } from './Footer';
 import { WhatsAppButton } from './WhatsAppButton';
@@ -59,13 +58,6 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
     setOpenDays((prev) => (prev.includes(d) ? prev.filter((item) => item !== d) : [...prev, d]));
   };
 
-  // Toggle Add-on
-  const toggleAddon = (addonId: string) => {
-    setSelectedAddons((prev) =>
-      prev.includes(addonId) ? prev.filter((id) => id !== addonId) : [...prev, addonId]
-    );
-  };
-
   // Apply Coupon
   const handleApplyCoupon = (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,14 +87,9 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
   // WhatsApp Checkout text
   const handleWhatsAppCheckout = () => {
-    const text = `Hello Trip With Safarwala! I want to book:\n\n🌴 *${pkg.title}*\n📅 *Batch Date*: ${selectedBatch.startDate} to ${selectedBatch.endDate}\n👥 *Travelers*: ${adults} Adult(s), ${children} Child(ren)\n🛏️ *Room Type*: ${roomType === 'double' ? 'Double Sharing' : 'Triple Sharing'}\n➕ *Add-ons*: ${selectedAddons.length > 0 ? selectedAddons.join(', ') : 'None'}\n🎟️ *Coupon Applied*: ${couponApplied ? '₹' + couponDiscount : 'None'}\n💰 *Grand Total Payable*: ₹${grandTotal.toLocaleString('en-IN')}\n\nPlease share booking confirmation & payment link.`;
+    const text = `Hello Trip With Safarwala! I want to book:\n\n🌴 *${pkg.title}*\n📅 *Batch Date*: ${selectedBatch.startDate} to ${selectedBatch.endDate}\n👥 *Travelers*: ${adults} Adult(s), ${children} Child(ren)\n🛏️ *Room Type*: ${roomType === 'double' ? 'Double Sharing' : 'Triple Sharing'}\n🎟️ *Coupon Applied*: ${couponApplied ? '₹' + couponDiscount : 'None'}\n💰 *Grand Total Payable*: ₹${grandTotal.toLocaleString('en-IN')}\n\nPlease share booking confirmation & payment link.`;
     window.open(`https://wa.me/919560798341?text=${encodeURIComponent(text)}`, '_blank');
   };
-
-  // Related Packages (excluding current)
-  const relatedPackages = useMemo(() => {
-    return PACKAGES.filter((p) => p.id !== pkg.id);
-  }, [pkg.id]);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -110,25 +97,25 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans pb-24 lg:pb-0 animate-fadeIn">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans pb-24 sm:pb-0 animate-fadeIn">
       
       {/* Top Breadcrumb & Quick Sticky Nav Bar */}
       <div className="bg-white border-b border-slate-200 sticky top-16 z-30 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between text-xs gap-2">
           
-          <div className="flex items-center gap-2 text-slate-500 overflow-x-auto whitespace-nowrap scrollbar-none">
+          <div className="flex items-center gap-1.5 text-slate-500 overflow-x-auto whitespace-nowrap scrollbar-none">
             {onBack ? (
-              <button onClick={onBack} className="flex items-center gap-1 text-[#2956B1] font-extrabold hover:underline mr-2 shrink-0">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Trips
+              <button onClick={onBack} className="flex items-center gap-1 text-[#2956B1] font-extrabold hover:underline mr-1 shrink-0">
+                <ArrowLeft className="w-3.5 h-3.5" />
+                Back
               </button>
             ) : (
               <Link href="/" className="hover:text-slate-900 shrink-0">Home</Link>
             )}
-            <span>/</span>
+            <span className="text-slate-300">/</span>
             <span className="shrink-0">{pkg.category}</span>
-            <span>/</span>
-            <span className="text-slate-900 font-extrabold truncate max-w-[200px]">{pkg.title}</span>
+            <span className="text-slate-300">/</span>
+            <span className="text-slate-900 font-extrabold truncate max-w-[140px] sm:max-w-[220px]">{pkg.title}</span>
           </div>
 
           {/* Sticky Section Quick Jumper Pills (Desktop) */}
@@ -141,7 +128,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
             <button onClick={() => scrollToSection('sec-faqs')} className="hover:text-[#2956B1] transition">FAQs</button>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <button
               onClick={() => setIsWishlisted(!isWishlisted)}
               className="flex items-center gap-1 text-slate-600 hover:text-[#2956B1] transition font-bold"
@@ -150,7 +137,14 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
               <span className="hidden sm:inline">{isWishlisted ? 'Saved' : 'Save'}</span>
             </button>
             <button
-              onClick={() => navigator.clipboard.writeText(window.location.href)}
+              onClick={() => {
+                if (navigator.share) {
+                  navigator.share({ title: pkg.title, url: window.location.href }).catch(() => {});
+                } else {
+                  navigator.clipboard.writeText(window.location.href);
+                  alert('Link copied to clipboard!');
+                }
+              }}
               className="flex items-center gap-1 text-slate-600 hover:text-[#2956B1] transition font-bold"
             >
               <Share2 className="w-4 h-4" />
@@ -162,16 +156,16 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
       </div>
 
       {/* SECTION 1: HERO HEADER & GALLERY SLIDER */}
-      <section className="bg-white py-8 border-b border-slate-200">
+      <section className="bg-white py-4 sm:py-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
             
             {/* Left Column: Gallery & Tour Specs */}
-            <div className="lg:col-span-8 space-y-6">
+            <div className="lg:col-span-8 space-y-4 sm:space-y-6">
               
               {/* Main Cover Image */}
-              <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-xl group">
+              <div className="relative aspect-[4/3] sm:aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-md sm:shadow-xl group">
                 <img
                   src={selectedImage}
                   alt={pkg.title}
@@ -179,27 +173,27 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                 />
                 
                 {/* Badges Overlay */}
-                <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
                   {pkg.badge && (
-                    <div className="bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-black text-xs px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1">
-                      <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                    <div className="bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-black text-[10px] sm:text-xs px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-lg flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-amber-300" />
                       <span>{pkg.badge}</span>
                     </div>
                   )}
-                  <div className="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1">
-                    <CheckCircle className="w-3.5 h-3.5" />
+                  <div className="bg-emerald-600 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 sm:px-3 sm:py-1 rounded-full shadow-md flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3" />
                     <span>Guaranteed Departure</span>
                   </div>
                 </div>
               </div>
 
-              {/* Thumbnails Row */}
-              <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
+              {/* Thumbnails Row (Swipeable on Mobile) */}
+              <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
                 {[pkg.coverImage, ...pkg.galleryImages].map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setSelectedImage(img)}
-                    className={`relative w-24 h-16 rounded-2xl overflow-hidden shrink-0 border-2 transition ${
+                    className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl sm:rounded-2xl overflow-hidden shrink-0 border-2 transition ${
                       selectedImage === img ? 'border-[#2956B1] scale-105 shadow-md' : 'border-slate-200 opacity-70 hover:opacity-100'
                     }`}
                   >
@@ -209,19 +203,19 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
               </div>
 
               {/* Title & Quick Specifications */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-extrabold text-[#2956B1] bg-blue-50 px-3 py-1 rounded-lg border border-blue-100">
+              <div className="space-y-2.5 sm:space-y-3">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <span className="text-[11px] sm:text-xs font-extrabold text-[#2956B1] bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100">
                     {pkg.category}
                   </span>
                   <div className="flex items-center gap-1 font-extrabold text-slate-900 text-xs">
                     <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                     <span>{pkg.rating}</span>
-                    <span className="text-slate-500 font-semibold">({pkg.reviewsCount} verified backpacker reviews)</span>
+                    <span className="text-slate-500 font-semibold">({pkg.reviewsCount} reviews)</span>
                   </div>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
                   {pkg.title}
                 </h1>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
@@ -229,44 +223,44 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                 </p>
 
                 {/* Key Spec Badges */}
-                <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-bold">
-                  <span className="flex items-center gap-2 text-slate-800 bg-slate-100 px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm">
-                    <Clock className="w-4 h-4 text-[#2956B1]" />
-                    {pkg.durationDays} Days / {pkg.durationNights} Nights
+                <div className="grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-2 sm:gap-3 pt-1 text-xs font-bold">
+                  <span className="flex items-center gap-2 text-slate-800 bg-slate-100 px-3 py-2 rounded-xl border border-slate-200 shadow-sm">
+                    <Clock className="w-4 h-4 text-[#2956B1] shrink-0" />
+                    <span>{pkg.durationDays} Days / {pkg.durationNights} Nights</span>
                   </span>
-                  <span className="flex items-center gap-2 text-slate-800 bg-slate-100 px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm">
-                    <MapPin className="w-4 h-4 text-[#2956B1]" />
-                    {pkg.pickupLocation} to {pkg.dropLocation}
+                  <span className="flex items-center gap-2 text-slate-800 bg-slate-100 px-3 py-2 rounded-xl border border-slate-200 shadow-sm">
+                    <MapPin className="w-4 h-4 text-[#2956B1] shrink-0" />
+                    <span>{pkg.pickupLocation} to {pkg.dropLocation}</span>
                   </span>
-                  <span className="flex items-center gap-2 text-emerald-800 bg-emerald-50 px-3.5 py-2 rounded-xl border border-emerald-200 shadow-sm">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                    100% Solo Female Friendly
+                  <span className="flex items-center gap-2 text-emerald-800 bg-emerald-50 px-3 py-2 rounded-xl border border-emerald-200 shadow-sm">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>100% Solo Female Friendly</span>
                   </span>
                 </div>
               </div>
 
             </div>
 
-            {/* Right Column: STICKY BOOKING CARD SIDEBAR */}
-            <div className="lg:col-span-4 sticky top-28 z-20">
-              <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-2xl space-y-5 text-slate-900">
+            {/* Right Column: BOOKING CARD SIDEBAR (Sticky on Desktop, Normal on Mobile) */}
+            <div className="lg:col-span-4 lg:sticky lg:top-28 z-20">
+              <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl sm:shadow-2xl space-y-4 sm:space-y-5 text-slate-900">
                 
                 {/* Header Price & Coupon Callout */}
-                <div className="border-b border-slate-100 pb-4 space-y-1">
-                  <div className="flex items-center justify-between">
+                <div className="border-b border-slate-100 pb-3 sm:pb-4 space-y-1">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="text-xs text-slate-400 line-through">
                       ₹{pkg.originalPrice.toLocaleString('en-IN')}
                     </span>
-                    <span className="text-xs font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                    <span className="text-[11px] sm:text-xs font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
                       Save ₹{(pkg.originalPrice - selectedBatch.price + (couponApplied ? couponDiscount : 0)).toLocaleString('en-IN')}
                     </span>
                   </div>
 
                   <div className="flex items-baseline gap-1">
-                    <span className="text-3xl sm:text-4xl font-black text-[#2956B1]">
+                    <span className="text-2xl sm:text-4xl font-black text-[#2956B1]">
                       ₹{grandTotal.toLocaleString('en-IN')}
                     </span>
-                    <span className="text-xs text-slate-500 font-semibold">total for {adults + children} pax (incl. GST)</span>
+                    <span className="text-[11px] sm:text-xs text-slate-500 font-semibold">total ({adults + children} pax incl. GST)</span>
                   </div>
                 </div>
 
@@ -281,7 +275,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                       const found = pkg.batchDates.find((b) => b.id === e.target.value);
                       if (found) setSelectedBatch(found);
                     }}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-bold text-slate-900 focus:outline-none focus:border-[#2956B1] cursor-pointer"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-900 focus:outline-none focus:border-[#2956B1] cursor-pointer"
                   >
                     {pkg.batchDates.map((b) => (
                       <option key={b.id} value={b.id} className="bg-white text-slate-900">
@@ -291,13 +285,13 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                   </select>
 
                   {/* Active Selected Batch & Seat Scarcity Info */}
-                  <div className="bg-amber-50/80 border border-amber-200/90 rounded-2xl p-3 flex items-center justify-between shadow-sm">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                  <div className="bg-amber-50/80 border border-amber-200/90 rounded-2xl p-2.5 sm:p-3 flex items-center justify-between shadow-sm gap-2">
+                    <div className="flex items-center gap-2 sm:gap-2.5">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
                         <Calendar className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-800">
+                        <div className="text-[11px] sm:text-xs font-bold text-slate-800 leading-tight">
                           <span className="text-[#2956B1]">{selectedBatch.startDate}</span> to <span className="text-[#2956B1]">{selectedBatch.endDate}</span>
                         </div>
                         <div className="text-[10px] text-emerald-600 font-extrabold flex items-center gap-1">
@@ -307,28 +301,28 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-1 bg-amber-500 text-white px-2.5 py-1 rounded-xl text-[10px] font-black shadow-sm shrink-0">
+                    <div className="flex items-center gap-1 bg-amber-500 text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl text-[10px] font-black shadow-sm shrink-0">
                       <Flame className="w-3 h-3 fill-white text-white animate-pulse" />
-                      <span>{selectedBatch.availableSeats} Seats Left</span>
+                      <span>{selectedBatch.availableSeats} Left</span>
                     </div>
                   </div>
                 </div>
 
-                {/* 2. Travelers Count & Room Type */}
-                <div className="grid grid-cols-2 gap-3">
+                {/* 2. Travelers Count */}
+                <div className="grid grid-cols-2 gap-2.5">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">Adults (12+ yrs)</label>
-                    <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 p-1.5 rounded-xl justify-between">
+                    <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 p-1 rounded-xl justify-between">
                       <button
                         onClick={() => setAdults(Math.max(1, adults - 1))}
-                        className="w-6 h-6 rounded-md bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100"
+                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center"
                       >
                         -
                       </button>
                       <span className="font-extrabold text-sm text-slate-900">{adults}</span>
                       <button
                         onClick={() => setAdults(adults + 1)}
-                        className="w-6 h-6 rounded-md bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100"
+                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center"
                       >
                         +
                       </button>
@@ -337,17 +331,17 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">Children (5-11 yrs)</label>
-                    <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 p-1.5 rounded-xl justify-between">
+                    <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 p-1 rounded-xl justify-between">
                       <button
                         onClick={() => setChildren(Math.max(0, children - 1))}
-                        className="w-6 h-6 rounded-md bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100"
+                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center"
                       >
                         -
                       </button>
                       <span className="font-extrabold text-sm text-slate-900">{children}</span>
                       <button
                         onClick={() => setChildren(children + 1)}
-                        className="w-6 h-6 rounded-md bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100"
+                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center"
                       >
                         +
                       </button>
@@ -361,7 +355,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => setRoomType('double')}
-                      className={`py-2 rounded-xl text-xs font-bold border transition ${
+                      className={`py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold border transition text-center ${
                         roomType === 'double'
                           ? 'bg-blue-50 border-[#2956B1] text-[#2956B1]'
                           : 'bg-slate-50 border-slate-200 text-slate-600'
@@ -371,13 +365,13 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     </button>
                     <button
                       onClick={() => setRoomType('triple')}
-                      className={`py-2 rounded-xl text-xs font-bold border transition ${
+                      className={`py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold border transition text-center ${
                         roomType === 'triple'
                           ? 'bg-blue-50 border-[#2956B1] text-[#2956B1]'
                           : 'bg-slate-50 border-slate-200 text-slate-600'
                       }`}
                     >
-                      Triple Sharing (-₹500)
+                      Triple (-₹500)
                     </button>
                   </div>
                 </div>
@@ -388,12 +382,12 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     type="text"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
-                    placeholder="Enter Coupon Code"
+                    placeholder="Enter Code"
                     className="flex-1 bg-slate-50 border border-slate-200 text-xs px-3 py-2 rounded-xl text-slate-900 focus:outline-none focus:border-[#2956B1] uppercase font-bold"
                   />
                   <button
                     type="submit"
-                    className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-3 py-2 rounded-xl"
+                    className="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-3.5 py-2 rounded-xl shrink-0"
                   >
                     Apply
                   </button>
@@ -401,13 +395,13 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
                 {couponApplied && (
                   <div className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 flex items-center justify-between">
-                    <span>Coupon SAFARWALA2000 Active</span>
+                    <span>Coupon SAFARWALA2000</span>
                     <span>-₹2,000 Off</span>
                   </div>
                 )}
 
                 {/* Price Breakdown */}
-                <div className="space-y-1.5 pt-3 border-t border-slate-100 text-xs text-slate-600 font-medium">
+                <div className="space-y-1.5 pt-2 border-t border-slate-100 text-xs text-slate-600 font-medium">
                   <div className="flex justify-between">
                     <span>Base Fare ({adults} Adult, {children} Child)</span>
                     <span className="font-bold text-slate-900">₹{(baseAdultTotal + baseChildTotal).toLocaleString('en-IN')}</span>
@@ -416,12 +410,6 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     <div className="flex justify-between text-emerald-600 font-bold">
                       <span>Triple Sharing Discount</span>
                       <span>₹{roomUpgradeFee.toLocaleString('en-IN')}</span>
-                    </div>
-                  )}
-                  {addonsTotal > 0 && (
-                    <div className="flex justify-between text-[#2956B1] font-bold">
-                      <span>Add-ons Total</span>
-                      <span>+₹{addonsTotal.toLocaleString('en-IN')}</span>
                     </div>
                   )}
                   <div className="flex justify-between">
@@ -435,10 +423,10 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                 </div>
 
                 {/* Action Buttons */}
-                <div className="space-y-2 pt-2">
+                <div className="space-y-2 pt-1">
                   <button
                     onClick={handleWhatsAppCheckout}
-                    className="w-full bg-gradient-to-r from-[#2956B1] to-blue-600 hover:from-blue-700 hover:to-blue-800 text-white font-extrabold text-sm py-3.5 rounded-xl shadow-md shadow-[#2956B1]/20 flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer"
+                    className="w-full bg-gradient-to-r from-[#2956B1] to-blue-600 hover:from-blue-700 hover:to-blue-800 text-white font-extrabold text-xs sm:text-sm py-3 rounded-xl shadow-md shadow-[#2956B1]/20 flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer"
                   >
                     <span>Instant Booking</span>
                     <ArrowRight className="w-4 h-4 stroke-[3]" />
@@ -446,9 +434,9 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
                   <button
                     onClick={() => onOpenInquiry(pkg.title)}
-                    className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-extrabold text-xs py-3 rounded-xl border border-emerald-200 flex items-center justify-center gap-2 transition cursor-pointer"
+                    className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-extrabold text-xs py-2.5 rounded-xl border border-emerald-200 flex items-center justify-center gap-2 transition cursor-pointer"
                   >
-                    <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
+                    <img src="/whatsapp.png" alt="WhatsApp" className="w-4 h-4 object-contain" />
                     <span>Enquire on WhatsApp</span>
                   </button>
                 </div>
@@ -462,25 +450,25 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
       </section>
 
       {/* Main Detailed Content Sections */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10 sm:space-y-16">
         
         {/* SECTION 2: TOUR OVERVIEW */}
-        <section id="sec-overview" className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+        <section id="sec-overview" className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-6 shadow-sm">
           <div className="flex items-center gap-2 text-[#2956B1] text-xs font-bold uppercase tracking-wider">
             <Compass className="w-4 h-4 text-[#2956B1]" />
             <span>Detailed Experience</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Tour Overview & Highlights</h2>
+          <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900">Tour Overview & Highlights</h2>
           
           <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
             {pkg.overview}
           </p>
 
           <div>
-            <h3 className="font-extrabold text-slate-900 text-base mb-3">Key Trip Highlights</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <h3 className="font-extrabold text-slate-900 text-sm sm:text-base mb-3">Key Trip Highlights</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
               {pkg.highlights.map((hl, i) => (
-                <div key={i} className="flex items-start gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+                <div key={i} className="flex items-start gap-2.5 bg-slate-50 p-3 rounded-xl sm:rounded-2xl border border-slate-200">
                   <CheckCircle2 className="w-4 h-4 text-[#2956B1] shrink-0 mt-0.5" />
                   <span className="text-xs text-slate-800 font-bold">{hl}</span>
                 </div>
@@ -490,101 +478,101 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         </section>
 
         {/* SECTION 3: PACKAGE INCLUDES CARDS */}
-        <section id="sec-includes" className="space-y-6">
+        <section id="sec-includes" className="space-y-4 sm:space-y-6">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs font-bold text-[#2956B1] uppercase tracking-widest">Everything Included</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">What's Covered In Your Booking</h2>
+            <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 mt-0.5">What's Covered In Your Booking</h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <div className="bg-white border border-slate-200 p-4 rounded-2xl text-center space-y-2 shadow-sm hover:border-[#2956B1] transition">
-              <Building className="w-6 h-6 text-[#2956B1] mx-auto" />
-              <div className="font-bold text-xs text-slate-900">Stays & Hotels</div>
-              <div className="text-[10px] text-slate-500">Boutique & Homestays</div>
+          <div className="grid grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-4">
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+              <Building className="w-5 h-5 sm:w-6 sm:h-6 text-[#2956B1] mx-auto" />
+              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Stays & Hotels</div>
+              <div className="text-[9px] sm:text-[10px] text-slate-500">Boutique & Homestays</div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-4 rounded-2xl text-center space-y-2 shadow-sm hover:border-[#2956B1] transition">
-              <Car className="w-6 h-6 text-[#2956B1] mx-auto" />
-              <div className="font-bold text-xs text-slate-900">Transfers</div>
-              <div className="text-[10px] text-slate-500">AC Volvo / SUV</div>
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+              <Car className="w-5 h-5 sm:w-6 sm:h-6 text-[#2956B1] mx-auto" />
+              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Transfers</div>
+              <div className="text-[9px] sm:text-[10px] text-slate-500">AC Volvo / SUV</div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-4 rounded-2xl text-center space-y-2 shadow-sm hover:border-[#2956B1] transition">
-              <Utensils className="w-6 h-6 text-[#2956B1] mx-auto" />
-              <div className="font-bold text-xs text-slate-900">Meals</div>
-              <div className="text-[10px] text-slate-500">Breakfast & Dinner</div>
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+              <Utensils className="w-5 h-5 sm:w-6 sm:h-6 text-[#2956B1] mx-auto" />
+              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Meals</div>
+              <div className="text-[9px] sm:text-[10px] text-slate-500">Breakfast & Dinner</div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-4 rounded-2xl text-center space-y-2 shadow-sm hover:border-[#2956B1] transition">
-              <Compass className="w-6 h-6 text-[#2956B1] mx-auto" />
-              <div className="font-bold text-xs text-slate-900">Sightseeing</div>
-              <div className="text-[10px] text-slate-500">All Top Spots</div>
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+              <Compass className="w-5 h-5 sm:w-6 sm:h-6 text-[#2956B1] mx-auto" />
+              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Sightseeing</div>
+              <div className="text-[9px] sm:text-[10px] text-slate-500">All Top Spots</div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-4 rounded-2xl text-center space-y-2 shadow-sm hover:border-[#2956B1] transition">
-              <UserCheck className="w-6 h-6 text-[#2956B1] mx-auto" />
-              <div className="font-bold text-xs text-slate-900">Trip Captain</div>
-              <div className="text-[10px] text-slate-500">First-Aid Certified</div>
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+              <UserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#2956B1] mx-auto" />
+              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Trip Captain</div>
+              <div className="text-[9px] sm:text-[10px] text-slate-500">First-Aid Certified</div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-4 rounded-2xl text-center space-y-2 shadow-sm hover:border-[#2956B1] transition">
-              <ShieldCheck className="w-6 h-6 text-emerald-600 mx-auto" />
-              <div className="font-bold text-xs text-slate-900">Safety Kits</div>
-              <div className="text-[10px] text-slate-500">Oxygen & First Aid</div>
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 mx-auto" />
+              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Safety Kits</div>
+              <div className="text-[9px] sm:text-[10px] text-slate-500">Oxygen & First Aid</div>
             </div>
           </div>
         </section>
 
         {/* SECTION 4: DAY WISE ITINERARY ACCORDION */}
-        <section id="sec-itinerary" className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <section id="sec-itinerary" className="space-y-4 sm:space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4">
             <div>
               <span className="text-xs font-bold text-[#2956B1] uppercase tracking-widest">Day by Day Schedule</span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Detailed Itinerary Timeline</h2>
+              <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 mt-0.5">Detailed Itinerary Timeline</h2>
             </div>
             <div className="flex gap-2 text-xs font-bold text-[#2956B1]">
-              <button onClick={() => setOpenDays(pkg.itinerary.map((d) => d.day))} className="hover:underline">Expand All Days</button>
+              <button onClick={() => setOpenDays(pkg.itinerary.map((d) => d.day))} className="hover:underline">Expand All</button>
               <span>|</span>
               <button onClick={() => setOpenDays([])} className="hover:underline">Collapse All</button>
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {pkg.itinerary.map((day) => {
               const isOpen = openDays.includes(day.day);
               return (
-                <div key={day.day} className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                <div key={day.day} className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm">
                   <button
                     onClick={() => toggleDay(day.day)}
-                    className="w-full p-5 flex items-center justify-between text-left hover:bg-slate-50 transition gap-4 cursor-pointer"
+                    className="w-full p-4 sm:p-5 flex items-center justify-between text-left hover:bg-slate-50 transition gap-3 cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#2956B1] to-blue-600 text-white font-black text-sm flex items-center justify-center shrink-0 shadow-md">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-[#2956B1] to-blue-600 text-white font-black text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-md">
                         D{day.day}
                       </div>
-                      <span className="font-extrabold text-sm sm:text-base text-slate-900">{day.title}</span>
+                      <span className="font-extrabold text-xs sm:text-base text-slate-900 leading-snug">{day.title}</span>
                     </div>
-                    {isOpen ? <ChevronUp className="w-5 h-5 text-[#2956B1] shrink-0" /> : <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />}
+                    {isOpen ? <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5 text-[#2956B1] shrink-0" /> : <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 shrink-0" />}
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-5 pt-2 border-t border-slate-100 ml-0 sm:ml-12 space-y-4 text-xs sm:text-sm text-slate-700 font-medium">
+                    <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-1 border-t border-slate-100 space-y-3 sm:space-y-4 text-xs sm:text-sm text-slate-700 font-medium">
                       <p className="leading-relaxed">{day.description}</p>
 
                       {day.image && (
-                        <div className="aspect-[21/9] max-h-60 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                        <div className="aspect-[16/9] sm:aspect-[21/9] max-h-60 rounded-xl sm:rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
                           <img src={day.image} alt={day.title} className="w-full h-full object-cover" />
                         </div>
                       )}
 
-                      <div className="flex flex-wrap items-center gap-3 text-xs pt-1">
+                      <div className="flex flex-wrap items-center gap-2 text-xs pt-1">
                         {day.meals && (
-                          <span className="font-bold text-[#2956B1] bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-100">
+                          <span className="font-bold text-[#2956B1] bg-blue-50 px-2.5 py-1 rounded-lg sm:rounded-xl border border-blue-100 text-[11px] sm:text-xs">
                             🍲 Meals: {day.meals.join(', ')}
                           </span>
                         )}
                         {day.stay && (
-                          <span className="font-bold text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
+                          <span className="font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg sm:rounded-xl border border-emerald-200 text-[11px] sm:text-xs">
                             🏨 Stay: {day.stay}
                           </span>
                         )}
@@ -598,37 +586,37 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         </section>
 
         {/* SECTION 5: PRICING TABLE */}
-        <section id="sec-pricing" className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+        <section id="sec-pricing" className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-6 shadow-sm">
           <div>
             <span className="text-xs font-bold text-[#2956B1] uppercase tracking-wider">Transparent Tariff</span>
-            <h2 className="text-2xl font-extrabold text-slate-900 mt-1">Package Pricing Table</h2>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Package Pricing Details</h2>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm border-collapse">
+          <div className="overflow-x-auto scrollbar-none">
+            <table className="w-full text-left text-xs sm:text-sm border-collapse min-w-[500px]">
               <thead>
                 <tr className="border-b border-slate-200 text-slate-500 text-xs uppercase bg-slate-50">
-                  <th className="py-3.5 px-4">Occupancy Category</th>
-                  <th className="py-3.5 px-4">Adult Rate (Per Person)</th>
-                  <th className="py-3.5 px-4">Child Rate (5-11 Yrs)</th>
-                  <th className="py-3.5 px-4">GST (5%)</th>
-                  <th className="py-3.5 px-4">Availability</th>
+                  <th className="py-3 px-3 sm:px-4">Occupancy Category</th>
+                  <th className="py-3 px-3 sm:px-4">Adult Rate (Per Person)</th>
+                  <th className="py-3 px-3 sm:px-4">Child Rate (5-11 Yrs)</th>
+                  <th className="py-3 px-3 sm:px-4">GST (5%)</th>
+                  <th className="py-3 px-3 sm:px-4">Availability</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-800 font-semibold">
                 <tr>
-                  <td className="py-4 px-4 font-bold text-slate-900">Double Sharing Room</td>
-                  <td className="py-4 px-4 font-extrabold text-[#2956B1]">₹{selectedBatch.price.toLocaleString('en-IN')}</td>
-                  <td className="py-4 px-4 font-semibold text-slate-600">₹{Math.round(selectedBatch.price * 0.75).toLocaleString('en-IN')}</td>
-                  <td className="py-4 px-4">Calculated at Checkout</td>
-                  <td className="py-4 px-4"><span className="text-xs font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">Available</span></td>
+                  <td className="py-3.5 px-3 sm:px-4 font-bold text-slate-900">Double Sharing Room</td>
+                  <td className="py-3.5 px-3 sm:px-4 font-extrabold text-[#2956B1]">₹{selectedBatch.price.toLocaleString('en-IN')}</td>
+                  <td className="py-3.5 px-3 sm:px-4 font-semibold text-slate-600">₹{Math.round(selectedBatch.price * 0.75).toLocaleString('en-IN')}</td>
+                  <td className="py-3.5 px-3 sm:px-4 text-slate-500">5% at Checkout</td>
+                  <td className="py-3.5 px-3 sm:px-4"><span className="text-[10px] sm:text-xs font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">Available</span></td>
                 </tr>
                 <tr>
-                  <td className="py-4 px-4 font-bold text-slate-900">Triple Sharing Room</td>
-                  <td className="py-4 px-4 font-extrabold text-[#2956B1]">₹{(selectedBatch.price - 500).toLocaleString('en-IN')}</td>
-                  <td className="py-4 px-4 font-semibold text-slate-600">₹{Math.round((selectedBatch.price - 500) * 0.75).toLocaleString('en-IN')}</td>
-                  <td className="py-4 px-4">Calculated at Checkout</td>
-                  <td className="py-4 px-4"><span className="text-xs font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">Available</span></td>
+                  <td className="py-3.5 px-3 sm:px-4 font-bold text-slate-900">Triple Sharing Room</td>
+                  <td className="py-3.5 px-3 sm:px-4 font-extrabold text-[#2956B1]">₹{(selectedBatch.price - 500).toLocaleString('en-IN')}</td>
+                  <td className="py-3.5 px-3 sm:px-4 font-semibold text-slate-600">₹{Math.round((selectedBatch.price - 500) * 0.75).toLocaleString('en-IN')}</td>
+                  <td className="py-3.5 px-3 sm:px-4 text-slate-500">5% at Checkout</td>
+                  <td className="py-3.5 px-3 sm:px-4"><span className="text-[10px] sm:text-xs font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">Available</span></td>
                 </tr>
               </tbody>
             </table>
@@ -636,13 +624,13 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         </section>
 
         {/* SECTION 6: INCLUSIONS & EXCLUSIONS CHECKLIST */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-emerald-50/60 border border-emerald-200 rounded-3xl p-6 sm:p-8 space-y-4">
-            <h3 className="font-extrabold text-emerald-800 text-lg flex items-center gap-2">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div className="bg-emerald-50/60 border border-emerald-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-3 sm:space-y-4">
+            <h3 className="font-extrabold text-emerald-800 text-base sm:text-lg flex items-center gap-2">
               <Check className="w-5 h-5 text-emerald-600 stroke-[3]" />
               <span>Inclusions Checklist</span>
             </h3>
-            <ul className="space-y-3 text-xs sm:text-sm text-slate-800 font-medium">
+            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-800 font-medium">
               {pkg.inclusions.map((inc, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 stroke-[3]" />
@@ -652,12 +640,12 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
             </ul>
           </div>
 
-          <div className="bg-red-50/60 border border-red-200 rounded-3xl p-6 sm:p-8 space-y-4">
-            <h3 className="font-extrabold text-red-600 text-lg flex items-center gap-2">
+          <div className="bg-red-50/60 border border-red-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-3 sm:space-y-4">
+            <h3 className="font-extrabold text-red-600 text-base sm:text-lg flex items-center gap-2">
               <X className="w-5 h-5 text-red-500 stroke-[3]" />
               <span>Exclusions Checklist</span>
             </h3>
-            <ul className="space-y-3 text-xs sm:text-sm text-slate-700 font-medium">
+            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 font-medium">
               {pkg.exclusions.map((exc, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
                   <X className="w-4 h-4 text-red-500 shrink-0 mt-0.5 stroke-[3]" />
@@ -669,14 +657,14 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         </section>
 
         {/* SECTION 7: DESTINATION VIDEO & MAP */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Destination Video */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-sm">
-            <h3 className="font-extrabold text-slate-900 text-base flex items-center gap-2">
+          <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-3 sm:space-y-4 shadow-sm">
+            <h3 className="font-extrabold text-slate-900 text-sm sm:text-base flex items-center gap-2">
               <Video className="w-4 h-4 text-[#2956B1]" />
               <span>Destination Video Preview</span>
             </h3>
-            <div className="aspect-[16/9] rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 relative shadow-inner">
+            <div className="aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 relative shadow-inner">
               <iframe
                 src={pkg.videoUrl || 'https://www.youtube.com/embed/l5A62FzGZ60'}
                 title={`${pkg.title} Tour Video`}
@@ -688,12 +676,12 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
           </div>
 
           {/* Interactive Google Map */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-sm">
-            <h3 className="font-extrabold text-slate-900 text-base flex items-center gap-2">
+          <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-3 sm:space-y-4 shadow-sm">
+            <h3 className="font-extrabold text-slate-900 text-sm sm:text-base flex items-center gap-2">
               <MapPin className="w-4 h-4 text-[#2956B1]" />
               <span>Interactive Route Map</span>
             </h3>
-            <div className="aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
+            <div className="aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
               <iframe
                 title="Route map"
                 src={pkg.mapEmbedUrl}
@@ -705,17 +693,17 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         </section>
 
         {/* SECTION 8: REVIEWS */}
-        <section id="sec-reviews" className="space-y-6">
+        <section id="sec-reviews" className="space-y-4 sm:space-y-6">
           <div>
             <span className="text-xs font-bold text-[#2956B1] uppercase tracking-wider">Community Feedback</span>
-            <h2 className="text-2xl font-extrabold text-slate-900 mt-1">Verified Traveler Reviews</h2>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Verified Traveler Reviews</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {REVIEWS.map((rev) => (
-              <div key={rev.id} className="bg-white border border-slate-200 p-5 rounded-3xl space-y-3 shadow-sm hover:border-[#2956B1] transition">
+              <div key={rev.id} className="bg-white border border-slate-200 p-4 sm:p-5 rounded-2xl sm:rounded-3xl space-y-3 shadow-sm hover:border-[#2956B1] transition">
                 <div className="flex items-center gap-3">
-                  <img src={rev.avatar} alt={rev.author} className="w-10 h-10 rounded-full object-cover border-2 border-blue-200" />
+                  <img src={rev.avatar} alt={rev.author} className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-blue-200" />
                   <div>
                     <div className="font-bold text-xs text-slate-900">{rev.author}</div>
                     <div className="text-[10px] text-slate-500">{rev.date}</div>
@@ -733,29 +721,29 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         </section>
 
         {/* SECTION 9: FAQs */}
-        <section id="sec-faqs" className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+        <section id="sec-faqs" className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-6 shadow-sm">
           <div>
             <span className="text-xs font-bold text-[#2956B1] uppercase tracking-wider">Got Questions?</span>
-            <h2 className="text-2xl font-extrabold text-slate-900 mt-1">Frequently Asked Questions</h2>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Frequently Asked Questions</h2>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5 sm:space-y-3">
             {pkg.faqs?.map((faq, idx) => {
               const isOpen = openFaqs.includes(idx);
               return (
-                <div key={idx} className="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
+                <div key={idx} className="bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl overflow-hidden">
                   <button
                     onClick={() =>
                       setOpenFaqs((prev) => (prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]))
                     }
-                    className="w-full p-4 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between gap-3 cursor-pointer"
+                    className="w-full p-3.5 sm:p-4 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between gap-3 cursor-pointer"
                   >
                     <span>{faq.question}</span>
-                    {isOpen ? <ChevronUp className="w-4 h-4 text-[#2956B1]" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+                    {isOpen ? <ChevronUp className="w-4 h-4 text-[#2956B1] shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />}
                   </button>
 
                   {isOpen && (
-                    <div className="px-4 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-200 pt-2 font-medium">
+                    <div className="px-3.5 pb-3.5 sm:px-4 sm:pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-200 pt-2 font-medium">
                       {faq.answer}
                     </div>
                   )}
@@ -768,7 +756,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
       </div>
 
       {/* SECTION 10: FLOATING MOBILE BOOKING BAR */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-white/95 backdrop-blur-lg border-t border-slate-200 p-3 flex items-center justify-between gap-3 shadow-2xl">
+      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200/90 p-3 flex items-center justify-between gap-3 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
         <div>
           <div className="text-[10px] text-slate-500 font-semibold">Starting from</div>
           <div className="font-black text-lg text-[#2956B1]">₹{grandTotal.toLocaleString('en-IN')}</div>
@@ -777,7 +765,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={handleWhatsAppCheckout}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl flex items-center gap-1.5"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl flex items-center gap-1.5 active:scale-95 transition-all shadow-md shadow-emerald-600/20"
           >
             <img src="/whatsapp.png" alt="WhatsApp" className="w-4 h-4 object-contain" />
             <span>Book</span>
@@ -785,7 +773,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
           <button
             onClick={() => onOpenInquiry(pkg.title)}
-            className="bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl"
+            className="bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl active:scale-95 transition-all shadow-md shadow-[#2956B1]/20"
           >
             Enquire
           </button>
