@@ -97,13 +97,13 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans pb-24 sm:pb-0 animate-fadeIn">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans pb-28 sm:pb-0 animate-fadeIn max-w-full overflow-x-hidden">
       
       {/* Top Breadcrumb & Quick Sticky Nav Bar */}
-      <div className="bg-white border-b border-slate-200 sticky top-16 z-30 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between text-xs gap-2">
+      <div className="bg-white border-b border-slate-200 sticky top-14 sm:top-16 z-30 shadow-sm">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 flex items-center justify-between text-xs gap-2">
           
-          <div className="flex items-center gap-1.5 text-slate-500 overflow-x-auto whitespace-nowrap scrollbar-none">
+          <div className="flex items-center gap-1.5 text-slate-500 overflow-x-auto whitespace-nowrap scrollbar-none max-w-[70%] sm:max-w-none">
             {onBack ? (
               <button onClick={onBack} className="flex items-center gap-1 text-[#2956B1] font-extrabold hover:underline mr-1 shrink-0">
                 <ArrowLeft className="w-3.5 h-3.5" />
@@ -115,7 +115,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
             <span className="text-slate-300">/</span>
             <span className="shrink-0">{pkg.category}</span>
             <span className="text-slate-300">/</span>
-            <span className="text-slate-900 font-extrabold truncate max-w-[140px] sm:max-w-[220px]">{pkg.title}</span>
+            <span className="text-slate-900 font-extrabold truncate max-w-[100px] sm:max-w-[220px]">{pkg.title}</span>
           </div>
 
           {/* Sticky Section Quick Jumper Pills (Desktop) */}
@@ -156,16 +156,16 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
       </div>
 
       {/* SECTION 1: HERO HEADER & GALLERY SLIDER */}
-      <section className="bg-white py-4 sm:py-8 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-white py-3 sm:py-8 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-start">
             
             {/* Left Column: Gallery & Tour Specs */}
-            <div className="lg:col-span-8 space-y-4 sm:space-y-6">
+            <div className="lg:col-span-8 space-y-3.5 sm:space-y-6">
               
               {/* Main Cover Image */}
-              <div className="relative aspect-[4/3] sm:aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-md sm:shadow-xl group">
+              <div className="relative aspect-[4/3] sm:aspect-[16/9] rounded-xl sm:rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-md sm:shadow-xl group">
                 <img
                   src={selectedImage}
                   alt={pkg.title}
@@ -173,14 +173,14 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                 />
                 
                 {/* Badges Overlay */}
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 right-2.5 flex flex-wrap items-center gap-1.5 sm:gap-2">
                   {pkg.badge && (
-                    <div className="bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-black text-[10px] sm:text-xs px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-lg flex items-center gap-1">
+                    <div className="bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-black text-[9px] sm:text-xs px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full shadow-lg flex items-center gap-1">
                       <Sparkles className="w-3 h-3 text-amber-300" />
                       <span>{pkg.badge}</span>
                     </div>
                   )}
-                  <div className="bg-emerald-600 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 sm:px-3 sm:py-1 rounded-full shadow-md flex items-center gap-1">
+                  <div className="bg-emerald-600 text-white text-[9px] sm:text-xs font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full shadow-md flex items-center gap-1">
                     <CheckCircle className="w-3 h-3" />
                     <span>Guaranteed Departure</span>
                   </div>
@@ -188,12 +188,12 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
               </div>
 
               {/* Thumbnails Row (Swipeable on Mobile) */}
-              <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
+              <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-1.5 scrollbar-none -mx-3 px-3 sm:mx-0 sm:px-0">
                 {[pkg.coverImage, ...pkg.galleryImages].map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setSelectedImage(img)}
-                    className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl sm:rounded-2xl overflow-hidden shrink-0 border-2 transition ${
+                    className={`relative w-16 h-12 sm:w-24 sm:h-16 rounded-lg sm:rounded-2xl overflow-hidden shrink-0 border-2 transition ${
                       selectedImage === img ? 'border-[#2956B1] scale-105 shadow-md' : 'border-slate-200 opacity-70 hover:opacity-100'
                     }`}
                   >
@@ -203,19 +203,19 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
               </div>
 
               {/* Title & Quick Specifications */}
-              <div className="space-y-2.5 sm:space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                  <span className="text-[11px] sm:text-xs font-extrabold text-[#2956B1] bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100">
+                  <span className="text-[10px] sm:text-xs font-extrabold text-[#2956B1] bg-blue-50 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg border border-blue-100">
                     {pkg.category}
                   </span>
                   <div className="flex items-center gap-1 font-extrabold text-slate-900 text-xs">
-                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                     <span>{pkg.rating}</span>
-                    <span className="text-slate-500 font-semibold">({pkg.reviewsCount} reviews)</span>
+                    <span className="text-slate-500 font-semibold text-[11px] sm:text-xs">({pkg.reviewsCount} reviews)</span>
                   </div>
                 </div>
 
-                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+                <h1 className="text-xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight break-words">
                   {pkg.title}
                 </h1>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
@@ -230,7 +230,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                   </span>
                   <span className="flex items-center gap-2 text-slate-800 bg-slate-100 px-3 py-2 rounded-xl border border-slate-200 shadow-sm">
                     <MapPin className="w-4 h-4 text-[#2956B1] shrink-0" />
-                    <span>{pkg.pickupLocation} to {pkg.dropLocation}</span>
+                    <span className="truncate">{pkg.pickupLocation} to {pkg.dropLocation}</span>
                   </span>
                   <span className="flex items-center gap-2 text-emerald-800 bg-emerald-50 px-3 py-2 rounded-xl border border-emerald-200 shadow-sm">
                     <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -241,9 +241,9 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
             </div>
 
-            {/* Right Column: BOOKING CARD SIDEBAR (Sticky on Desktop, Normal on Mobile) */}
+            {/* Right Column: BOOKING CARD SIDEBAR (Sticky on Desktop, Normal Card on Mobile) */}
             <div className="lg:col-span-4 lg:sticky lg:top-28 z-20">
-              <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl sm:shadow-2xl space-y-4 sm:space-y-5 text-slate-900">
+              <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-lg sm:shadow-2xl space-y-4 sm:space-y-5 text-slate-900">
                 
                 {/* Header Price & Coupon Callout */}
                 <div className="border-b border-slate-100 pb-3 sm:pb-4 space-y-1">
@@ -251,7 +251,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     <span className="text-xs text-slate-400 line-through">
                       ₹{pkg.originalPrice.toLocaleString('en-IN')}
                     </span>
-                    <span className="text-[11px] sm:text-xs font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                    <span className="text-[10px] sm:text-xs font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                       Save ₹{(pkg.originalPrice - selectedBatch.price + (couponApplied ? couponDiscount : 0)).toLocaleString('en-IN')}
                     </span>
                   </div>
@@ -260,13 +260,13 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     <span className="text-2xl sm:text-4xl font-black text-[#2956B1]">
                       ₹{grandTotal.toLocaleString('en-IN')}
                     </span>
-                    <span className="text-[11px] sm:text-xs text-slate-500 font-semibold">total ({adults + children} pax incl. GST)</span>
+                    <span className="text-[10px] sm:text-xs text-slate-500 font-semibold">total ({adults + children} pax incl. GST)</span>
                   </div>
                 </div>
 
                 {/* 1. Departure Date Selector */}
                 <div className="space-y-2">
-                  <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+                  <label className="block text-[11px] sm:text-xs font-extrabold text-slate-900 uppercase tracking-wider">
                     1. Select Departure Batch Date
                   </label>
                   <select
@@ -275,33 +275,33 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                       const found = pkg.batchDates.find((b) => b.id === e.target.value);
                       if (found) setSelectedBatch(found);
                     }}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-900 focus:outline-none focus:border-[#2956B1] cursor-pointer"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-900 focus:outline-none focus:border-[#2956B1] cursor-pointer truncate"
                   >
                     {pkg.batchDates.map((b) => (
                       <option key={b.id} value={b.id} className="bg-white text-slate-900">
-                        {b.startDate} to {b.endDate} ({b.status} - {b.availableSeats} seats)
+                        {b.startDate} - {b.endDate} ({b.availableSeats} seats left)
                       </option>
                     ))}
                   </select>
 
                   {/* Active Selected Batch & Seat Scarcity Info */}
-                  <div className="bg-amber-50/80 border border-amber-200/90 rounded-2xl p-2.5 sm:p-3 flex items-center justify-between shadow-sm gap-2">
-                    <div className="flex items-center gap-2 sm:gap-2.5">
+                  <div className="bg-amber-50/90 border border-amber-200 rounded-xl sm:rounded-2xl p-2.5 sm:p-3 flex items-center justify-between shadow-sm gap-2">
+                    <div className="flex items-center gap-2">
                       <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
-                        <Calendar className="w-4 h-4" />
+                        <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       </div>
-                      <div>
-                        <div className="text-[11px] sm:text-xs font-bold text-slate-800 leading-tight">
+                      <div className="min-w-0">
+                        <div className="text-[11px] sm:text-xs font-bold text-slate-800 leading-tight truncate">
                           <span className="text-[#2956B1]">{selectedBatch.startDate}</span> to <span className="text-[#2956B1]">{selectedBatch.endDate}</span>
                         </div>
                         <div className="text-[10px] text-emerald-600 font-extrabold flex items-center gap-1">
-                          <CheckCircle2 className="w-3 h-3" />
+                          <CheckCircle2 className="w-3 h-3 shrink-0" />
                           <span>Guaranteed Departure</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-1 bg-amber-500 text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl text-[10px] font-black shadow-sm shrink-0">
+                    <div className="flex items-center gap-1 bg-amber-500 text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg sm:rounded-xl text-[10px] font-black shadow-sm shrink-0">
                       <Flame className="w-3 h-3 fill-white text-white animate-pulse" />
                       <span>{selectedBatch.availableSeats} Left</span>
                     </div>
@@ -311,18 +311,18 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                 {/* 2. Travelers Count */}
                 <div className="grid grid-cols-2 gap-2.5">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Adults (12+ yrs)</label>
-                    <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 p-1 rounded-xl justify-between">
+                    <label className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">Adults (12+ yrs)</label>
+                    <div className="flex items-center gap-1 sm:gap-2 bg-slate-50 border border-slate-200 p-1 rounded-xl justify-between">
                       <button
                         onClick={() => setAdults(Math.max(1, adults - 1))}
-                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center"
+                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center text-sm"
                       >
                         -
                       </button>
-                      <span className="font-extrabold text-sm text-slate-900">{adults}</span>
+                      <span className="font-extrabold text-xs sm:text-sm text-slate-900">{adults}</span>
                       <button
                         onClick={() => setAdults(adults + 1)}
-                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center"
+                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center text-sm"
                       >
                         +
                       </button>
@@ -330,18 +330,18 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">Children (5-11 yrs)</label>
-                    <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 p-1 rounded-xl justify-between">
+                    <label className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">Children (5-11 yrs)</label>
+                    <div className="flex items-center gap-1 sm:gap-2 bg-slate-50 border border-slate-200 p-1 rounded-xl justify-between">
                       <button
                         onClick={() => setChildren(Math.max(0, children - 1))}
-                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center"
+                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center text-sm"
                       >
                         -
                       </button>
-                      <span className="font-extrabold text-sm text-slate-900">{children}</span>
+                      <span className="font-extrabold text-xs sm:text-sm text-slate-900">{children}</span>
                       <button
                         onClick={() => setChildren(children + 1)}
-                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center"
+                        className="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-800 font-bold hover:bg-slate-100 active:scale-95 flex items-center justify-center text-sm"
                       >
                         +
                       </button>
@@ -351,11 +351,11 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
                 {/* 3. Room Occupancy */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Room Occupancy</label>
+                  <label className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">Room Occupancy</label>
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => setRoomType('double')}
-                      className={`py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold border transition text-center ${
+                      className={`py-2 px-1 rounded-xl text-[10px] sm:text-xs font-bold border transition text-center ${
                         roomType === 'double'
                           ? 'bg-blue-50 border-[#2956B1] text-[#2956B1]'
                           : 'bg-slate-50 border-slate-200 text-slate-600'
@@ -365,7 +365,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     </button>
                     <button
                       onClick={() => setRoomType('triple')}
-                      className={`py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold border transition text-center ${
+                      className={`py-2 px-1 rounded-xl text-[10px] sm:text-xs font-bold border transition text-center ${
                         roomType === 'triple'
                           ? 'bg-blue-50 border-[#2956B1] text-[#2956B1]'
                           : 'bg-slate-50 border-slate-200 text-slate-600'
@@ -383,7 +383,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
                     placeholder="Enter Code"
-                    className="flex-1 bg-slate-50 border border-slate-200 text-xs px-3 py-2 rounded-xl text-slate-900 focus:outline-none focus:border-[#2956B1] uppercase font-bold"
+                    className="flex-1 bg-slate-50 border border-slate-200 text-xs px-3 py-2 rounded-xl text-slate-900 focus:outline-none focus:border-[#2956B1] uppercase font-bold min-w-0"
                   />
                   <button
                     type="submit"
@@ -450,25 +450,25 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
       </section>
 
       {/* Main Detailed Content Sections */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10 sm:space-y-16">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-12 space-y-8 sm:space-y-16">
         
         {/* SECTION 2: TOUR OVERVIEW */}
-        <section id="sec-overview" className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-6 shadow-sm">
+        <section id="sec-overview" className="bg-white border border-slate-200 rounded-xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-6 shadow-sm">
           <div className="flex items-center gap-2 text-[#2956B1] text-xs font-bold uppercase tracking-wider">
             <Compass className="w-4 h-4 text-[#2956B1]" />
             <span>Detailed Experience</span>
           </div>
-          <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900">Tour Overview & Highlights</h2>
+          <h2 className="text-lg sm:text-3xl font-extrabold text-slate-900">Tour Overview & Highlights</h2>
           
           <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
             {pkg.overview}
           </p>
 
           <div>
-            <h3 className="font-extrabold text-slate-900 text-sm sm:text-base mb-3">Key Trip Highlights</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+            <h3 className="font-extrabold text-slate-900 text-xs sm:text-base mb-2.5">Key Trip Highlights</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {pkg.highlights.map((hl, i) => (
-                <div key={i} className="flex items-start gap-2.5 bg-slate-50 p-3 rounded-xl sm:rounded-2xl border border-slate-200">
+                <div key={i} className="flex items-start gap-2.5 bg-slate-50 p-2.5 sm:p-3.5 rounded-xl border border-slate-200">
                   <CheckCircle2 className="w-4 h-4 text-[#2956B1] shrink-0 mt-0.5" />
                   <span className="text-xs text-slate-800 font-bold">{hl}</span>
                 </div>
@@ -478,57 +478,57 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         </section>
 
         {/* SECTION 3: PACKAGE INCLUDES CARDS */}
-        <section id="sec-includes" className="space-y-4 sm:space-y-6">
+        <section id="sec-includes" className="space-y-3 sm:space-y-6">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-xs font-bold text-[#2956B1] uppercase tracking-widest">Everything Included</span>
-            <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 mt-0.5">What's Covered In Your Booking</h2>
+            <h2 className="text-lg sm:text-3xl font-extrabold text-slate-900 mt-0.5">What's Covered In Your Booking</h2>
           </div>
 
-          <div className="grid grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-4">
-            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4">
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-xl sm:rounded-2xl text-center space-y-1 shadow-sm hover:border-[#2956B1] transition">
               <Building className="w-5 h-5 sm:w-6 sm:h-6 text-[#2956B1] mx-auto" />
-              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Stays & Hotels</div>
-              <div className="text-[9px] sm:text-[10px] text-slate-500">Boutique & Homestays</div>
+              <div className="font-bold text-xs text-slate-900">Stays & Hotels</div>
+              <div className="text-[10px] text-slate-500">Boutique & Homestays</div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-xl sm:rounded-2xl text-center space-y-1 shadow-sm hover:border-[#2956B1] transition">
               <Car className="w-5 h-5 sm:w-6 sm:h-6 text-[#2956B1] mx-auto" />
-              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Transfers</div>
-              <div className="text-[9px] sm:text-[10px] text-slate-500">AC Volvo / SUV</div>
+              <div className="font-bold text-xs text-slate-900">Transfers</div>
+              <div className="text-[10px] text-slate-500">AC Volvo / SUV</div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-xl sm:rounded-2xl text-center space-y-1 shadow-sm hover:border-[#2956B1] transition">
               <Utensils className="w-5 h-5 sm:w-6 sm:h-6 text-[#2956B1] mx-auto" />
-              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Meals</div>
-              <div className="text-[9px] sm:text-[10px] text-slate-500">Breakfast & Dinner</div>
+              <div className="font-bold text-xs text-slate-900">Meals</div>
+              <div className="text-[10px] text-slate-500">Breakfast & Dinner</div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-xl sm:rounded-2xl text-center space-y-1 shadow-sm hover:border-[#2956B1] transition">
               <Compass className="w-5 h-5 sm:w-6 sm:h-6 text-[#2956B1] mx-auto" />
-              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Sightseeing</div>
-              <div className="text-[9px] sm:text-[10px] text-slate-500">All Top Spots</div>
+              <div className="font-bold text-xs text-slate-900">Sightseeing</div>
+              <div className="text-[10px] text-slate-500">All Top Spots</div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-xl sm:rounded-2xl text-center space-y-1 shadow-sm hover:border-[#2956B1] transition">
               <UserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#2956B1] mx-auto" />
-              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Trip Captain</div>
-              <div className="text-[9px] sm:text-[10px] text-slate-500">First-Aid Certified</div>
+              <div className="font-bold text-xs text-slate-900">Trip Captain</div>
+              <div className="text-[10px] text-slate-500">First-Aid Certified</div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-2xl text-center space-y-1.5 shadow-sm hover:border-[#2956B1] transition">
+            <div className="bg-white border border-slate-200 p-3 sm:p-4 rounded-xl sm:rounded-2xl text-center space-y-1 shadow-sm hover:border-[#2956B1] transition">
               <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 mx-auto" />
-              <div className="font-bold text-[11px] sm:text-xs text-slate-900">Safety Kits</div>
-              <div className="text-[9px] sm:text-[10px] text-slate-500">Oxygen & First Aid</div>
+              <div className="font-bold text-xs text-slate-900">Safety Kits</div>
+              <div className="text-[10px] text-slate-500">Oxygen & First Aid</div>
             </div>
           </div>
         </section>
 
         {/* SECTION 4: DAY WISE ITINERARY ACCORDION */}
-        <section id="sec-itinerary" className="space-y-4 sm:space-y-6">
+        <section id="sec-itinerary" className="space-y-3 sm:space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4">
             <div>
               <span className="text-xs font-bold text-[#2956B1] uppercase tracking-widest">Day by Day Schedule</span>
-              <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 mt-0.5">Detailed Itinerary Timeline</h2>
+              <h2 className="text-lg sm:text-3xl font-extrabold text-slate-900 mt-0.5">Detailed Itinerary Timeline</h2>
             </div>
             <div className="flex gap-2 text-xs font-bold text-[#2956B1]">
               <button onClick={() => setOpenDays(pkg.itinerary.map((d) => d.day))} className="hover:underline">Expand All</button>
@@ -541,22 +541,22 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
             {pkg.itinerary.map((day) => {
               const isOpen = openDays.includes(day.day);
               return (
-                <div key={day.day} className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm">
+                <div key={day.day} className="bg-white border border-slate-200 rounded-xl sm:rounded-3xl overflow-hidden shadow-sm">
                   <button
                     onClick={() => toggleDay(day.day)}
-                    className="w-full p-4 sm:p-5 flex items-center justify-between text-left hover:bg-slate-50 transition gap-3 cursor-pointer"
+                    className="w-full p-3.5 sm:p-5 flex items-center justify-between text-left hover:bg-slate-50 transition gap-2 sm:gap-3 cursor-pointer"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-[#2956B1] to-blue-600 text-white font-black text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-md">
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-[#2956B1] to-blue-600 text-white font-black text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-md">
                         D{day.day}
                       </div>
-                      <span className="font-extrabold text-xs sm:text-base text-slate-900 leading-snug">{day.title}</span>
+                      <span className="font-extrabold text-xs sm:text-base text-slate-900 leading-snug truncate">{day.title}</span>
                     </div>
                     {isOpen ? <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5 text-[#2956B1] shrink-0" /> : <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 shrink-0" />}
                   </button>
 
                   {isOpen && (
-                    <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-1 border-t border-slate-100 space-y-3 sm:space-y-4 text-xs sm:text-sm text-slate-700 font-medium">
+                    <div className="px-3.5 pb-3.5 sm:px-5 sm:pb-5 pt-1 border-t border-slate-100 space-y-3 sm:space-y-4 text-xs sm:text-sm text-slate-700 font-medium">
                       <p className="leading-relaxed">{day.description}</p>
 
                       {day.image && (
@@ -567,12 +567,12 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
                       <div className="flex flex-wrap items-center gap-2 text-xs pt-1">
                         {day.meals && (
-                          <span className="font-bold text-[#2956B1] bg-blue-50 px-2.5 py-1 rounded-lg sm:rounded-xl border border-blue-100 text-[11px] sm:text-xs">
+                          <span className="font-bold text-[#2956B1] bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100 text-[10px] sm:text-xs">
                             🍲 Meals: {day.meals.join(', ')}
                           </span>
                         )}
                         {day.stay && (
-                          <span className="font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg sm:rounded-xl border border-emerald-200 text-[11px] sm:text-xs">
+                          <span className="font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 text-[10px] sm:text-xs">
                             🏨 Stay: {day.stay}
                           </span>
                         )}
@@ -585,14 +585,52 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
           </div>
         </section>
 
-        {/* SECTION 5: PRICING TABLE */}
-        <section id="sec-pricing" className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-6 shadow-sm">
+        {/* SECTION 5: PRICING TABLE (Mobile Cards & Desktop Table) */}
+        <section id="sec-pricing" className="bg-white border border-slate-200 rounded-xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-6 shadow-sm">
           <div>
             <span className="text-xs font-bold text-[#2956B1] uppercase tracking-wider">Transparent Tariff</span>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Package Pricing Details</h2>
+            <h2 className="text-lg sm:text-2xl font-extrabold text-slate-900 mt-0.5">Package Pricing Details</h2>
           </div>
 
-          <div className="overflow-x-auto scrollbar-none">
+          {/* Mobile Pricing Cards (< sm) */}
+          <div className="block sm:hidden space-y-3">
+            <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-xl space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="font-extrabold text-xs text-slate-900">Double Sharing Room</span>
+                <span className="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">Available</span>
+              </div>
+              <div className="flex items-baseline justify-between border-t border-slate-200/60 pt-2">
+                <div>
+                  <div className="text-[10px] text-slate-500 font-semibold">Adult Rate (Per Person)</div>
+                  <div className="font-black text-base text-[#2956B1]">₹{selectedBatch.price.toLocaleString('en-IN')}</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[10px] text-slate-500 font-semibold">Child Rate (5-11 yrs)</div>
+                  <div className="font-bold text-xs text-slate-700">₹{Math.round(selectedBatch.price * 0.75).toLocaleString('en-IN')}</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-xl space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="font-extrabold text-xs text-slate-900">Triple Sharing Room</span>
+                <span className="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">Available</span>
+              </div>
+              <div className="flex items-baseline justify-between border-t border-slate-200/60 pt-2">
+                <div>
+                  <div className="text-[10px] text-slate-500 font-semibold">Adult Rate (Per Person)</div>
+                  <div className="font-black text-base text-[#2956B1]">₹{(selectedBatch.price - 500).toLocaleString('en-IN')}</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[10px] text-slate-500 font-semibold">Child Rate (5-11 yrs)</div>
+                  <div className="font-bold text-xs text-slate-700">₹{Math.round((selectedBatch.price - 500) * 0.75).toLocaleString('en-IN')}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Pricing Table (>= sm) */}
+          <div className="hidden sm:block overflow-x-auto scrollbar-none">
             <table className="w-full text-left text-xs sm:text-sm border-collapse min-w-[500px]">
               <thead>
                 <tr className="border-b border-slate-200 text-slate-500 text-xs uppercase bg-slate-50">
@@ -625,30 +663,30 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
         {/* SECTION 6: INCLUSIONS & EXCLUSIONS CHECKLIST */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          <div className="bg-emerald-50/60 border border-emerald-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-3 sm:space-y-4">
-            <h3 className="font-extrabold text-emerald-800 text-base sm:text-lg flex items-center gap-2">
-              <Check className="w-5 h-5 text-emerald-600 stroke-[3]" />
+          <div className="bg-emerald-50/60 border border-emerald-200 rounded-xl sm:rounded-3xl p-4 sm:p-8 space-y-3 sm:space-y-4">
+            <h3 className="font-extrabold text-emerald-800 text-sm sm:text-lg flex items-center gap-2">
+              <Check className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 stroke-[3]" />
               <span>Inclusions Checklist</span>
             </h3>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-800 font-medium">
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-slate-800 font-medium">
               {pkg.inclusions.map((inc, idx) => (
-                <li key={idx} className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 stroke-[3]" />
+                <li key={idx} className="flex items-start gap-2 sm:gap-2.5">
+                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0 mt-0.5 stroke-[3]" />
                   <span>{inc}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="bg-red-50/60 border border-red-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-3 sm:space-y-4">
-            <h3 className="font-extrabold text-red-600 text-base sm:text-lg flex items-center gap-2">
-              <X className="w-5 h-5 text-red-500 stroke-[3]" />
+          <div className="bg-red-50/60 border border-red-200 rounded-xl sm:rounded-3xl p-4 sm:p-8 space-y-3 sm:space-y-4">
+            <h3 className="font-extrabold text-red-600 text-sm sm:text-lg flex items-center gap-2">
+              <X className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 stroke-[3]" />
               <span>Exclusions Checklist</span>
             </h3>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 font-medium">
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-slate-700 font-medium">
               {pkg.exclusions.map((exc, idx) => (
-                <li key={idx} className="flex items-start gap-2.5">
-                  <X className="w-4 h-4 text-red-500 shrink-0 mt-0.5 stroke-[3]" />
+                <li key={idx} className="flex items-start gap-2 sm:gap-2.5">
+                  <X className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500 shrink-0 mt-0.5 stroke-[3]" />
                   <span>{exc}</span>
                 </li>
               ))}
@@ -659,12 +697,12 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         {/* SECTION 7: DESTINATION VIDEO & MAP */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Destination Video */}
-          <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-3 sm:space-y-4 shadow-sm">
-            <h3 className="font-extrabold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+          <div className="bg-white border border-slate-200 rounded-xl sm:rounded-3xl p-3.5 sm:p-6 space-y-3 sm:space-y-4 shadow-sm">
+            <h3 className="font-extrabold text-slate-900 text-xs sm:text-base flex items-center gap-2">
               <Video className="w-4 h-4 text-[#2956B1]" />
               <span>Destination Video Preview</span>
             </h3>
-            <div className="aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 relative shadow-inner">
+            <div className="aspect-[16/9] rounded-lg sm:rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 relative shadow-inner">
               <iframe
                 src={pkg.videoUrl || 'https://www.youtube.com/embed/l5A62FzGZ60'}
                 title={`${pkg.title} Tour Video`}
@@ -676,12 +714,12 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
           </div>
 
           {/* Interactive Google Map */}
-          <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-3 sm:space-y-4 shadow-sm">
-            <h3 className="font-extrabold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+          <div className="bg-white border border-slate-200 rounded-xl sm:rounded-3xl p-3.5 sm:p-6 space-y-3 sm:space-y-4 shadow-sm">
+            <h3 className="font-extrabold text-slate-900 text-xs sm:text-base flex items-center gap-2">
               <MapPin className="w-4 h-4 text-[#2956B1]" />
               <span>Interactive Route Map</span>
             </h3>
-            <div className="aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
+            <div className="aspect-[16/9] rounded-lg sm:rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
               <iframe
                 title="Route map"
                 src={pkg.mapEmbedUrl}
@@ -693,17 +731,17 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         </section>
 
         {/* SECTION 8: REVIEWS */}
-        <section id="sec-reviews" className="space-y-4 sm:space-y-6">
+        <section id="sec-reviews" className="space-y-3 sm:space-y-6">
           <div>
             <span className="text-xs font-bold text-[#2956B1] uppercase tracking-wider">Community Feedback</span>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Verified Traveler Reviews</h2>
+            <h2 className="text-lg sm:text-2xl font-extrabold text-slate-900 mt-0.5">Verified Traveler Reviews</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-6">
             {REVIEWS.map((rev) => (
-              <div key={rev.id} className="bg-white border border-slate-200 p-4 sm:p-5 rounded-2xl sm:rounded-3xl space-y-3 shadow-sm hover:border-[#2956B1] transition">
-                <div className="flex items-center gap-3">
-                  <img src={rev.avatar} alt={rev.author} className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-blue-200" />
+              <div key={rev.id} className="bg-white border border-slate-200 p-4 rounded-xl sm:rounded-3xl space-y-2.5 shadow-sm hover:border-[#2956B1] transition">
+                <div className="flex items-center gap-2.5">
+                  <img src={rev.avatar} alt={rev.author} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-blue-200" />
                   <div>
                     <div className="font-bold text-xs text-slate-900">{rev.author}</div>
                     <div className="text-[10px] text-slate-500">{rev.date}</div>
@@ -721,13 +759,13 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         </section>
 
         {/* SECTION 9: FAQs */}
-        <section id="sec-faqs" className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-6 shadow-sm">
+        <section id="sec-faqs" className="bg-white border border-slate-200 rounded-xl sm:rounded-3xl p-4 sm:p-8 space-y-4 sm:space-y-6 shadow-sm">
           <div>
             <span className="text-xs font-bold text-[#2956B1] uppercase tracking-wider">Got Questions?</span>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Frequently Asked Questions</h2>
+            <h2 className="text-lg sm:text-2xl font-extrabold text-slate-900 mt-0.5">Frequently Asked Questions</h2>
           </div>
 
-          <div className="space-y-2.5 sm:space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             {pkg.faqs?.map((faq, idx) => {
               const isOpen = openFaqs.includes(idx);
               return (
@@ -736,14 +774,14 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     onClick={() =>
                       setOpenFaqs((prev) => (prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]))
                     }
-                    className="w-full p-3.5 sm:p-4 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between gap-3 cursor-pointer"
+                    className="w-full p-3 sm:p-4 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between gap-2.5 cursor-pointer"
                   >
-                    <span>{faq.question}</span>
+                    <span className="leading-snug">{faq.question}</span>
                     {isOpen ? <ChevronUp className="w-4 h-4 text-[#2956B1] shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />}
                   </button>
 
                   {isOpen && (
-                    <div className="px-3.5 pb-3.5 sm:px-4 sm:pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-200 pt-2 font-medium">
+                    <div className="px-3 pb-3 sm:px-4 sm:pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-200 pt-2 font-medium">
                       {faq.answer}
                     </div>
                   )}
@@ -756,16 +794,16 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
       </div>
 
       {/* SECTION 10: FLOATING MOBILE BOOKING BAR */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200/90 p-3 flex items-center justify-between gap-3 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
+      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200/90 p-2.5 px-3 flex items-center justify-between gap-2 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
         <div>
-          <div className="text-[10px] text-slate-500 font-semibold">Starting from</div>
-          <div className="font-black text-lg text-[#2956B1]">₹{grandTotal.toLocaleString('en-IN')}</div>
+          <div className="text-[9px] text-slate-500 font-semibold">Starting from</div>
+          <div className="font-black text-base text-[#2956B1]">₹{grandTotal.toLocaleString('en-IN')}</div>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={handleWhatsAppCheckout}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl flex items-center gap-1.5 active:scale-95 transition-all shadow-md shadow-emerald-600/20"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3 py-2 rounded-xl flex items-center gap-1.5 active:scale-95 transition-all shadow-md shadow-emerald-600/20"
           >
             <img src="/whatsapp.png" alt="WhatsApp" className="w-4 h-4 object-contain" />
             <span>Book</span>
@@ -773,7 +811,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
           <button
             onClick={() => onOpenInquiry(pkg.title)}
-            className="bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl active:scale-95 transition-all shadow-md shadow-[#2956B1]/20"
+            className="bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-bold text-xs px-3.5 py-2 rounded-xl active:scale-95 transition-all shadow-md shadow-[#2956B1]/20"
           >
             Enquire
           </button>
