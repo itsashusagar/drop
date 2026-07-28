@@ -20,7 +20,7 @@ export const BranchOffices: React.FC = () => {
     status: 'Open Now • Closes at 7:30 PM',
     metro: '1 Min walk from Dilshad Garden Metro Station (Red Line)',
     mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.0827293529367!2d77.31976867625807!3d28.6756616822292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb638fb19bb7%3A0x8cf6b485d9bf16c!2sDilshad%20Garden%20Metro%20Station!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin',
-    directMapUrl: 'https://maps.google.com/?q=Dilshad+Garden+Metro+Station+New+Delhi',
+    directMapUrl: 'https://www.google.com/maps/place/Trip+with+Safarwala/@28.7042252,77.3164692,727m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390cfb638fb19bb7:0x60c61092acccf2fa!8m2!3d28.7042206!4d77.3213401!16s%2Fg%2F11zcxnnpgk?entry=ttu',
     officeImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop',
   };
 

@@ -131,12 +131,13 @@ export const ReviewsSection: React.FC = () => {
               </button>
 
               <a
-                href="https://search.google.com/local/writereview"
+                href="https://www.google.com/maps/place/Trip+with+Safarwala/@28.7042252,77.3164692,727m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390cfb638fb19bb7:0x60c61092acccf2fa!8m2!3d28.7042206!4d77.3213401!16s%2Fg%2F11zcxnnpgk?entry=ttu"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-xs px-4 py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition shadow-sm whitespace-nowrap"
+                className="bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-extrabold text-xs px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 transition shadow-sm whitespace-nowrap cursor-pointer"
               >
-                <span>Google Reviews</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" className="w-4 h-4 object-contain" />
+                <span>View Google Reviews</span>
                 <ExternalLink className="w-3.5 h-3.5 text-[#2956B1]" />
               </a>
             </div>

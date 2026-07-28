@@ -8,7 +8,7 @@ import {
   MapPin, Clock, Star, Heart, ArrowRight, Check, X,
   Calendar, Sparkles, Building, Car, Utensils, Compass, UserCheck,
   CheckCircle2, ChevronDown, ChevronUp, Share2, ArrowLeft,
-  ShieldCheck, CheckCircle, Video, Flame
+  ShieldCheck, CheckCircle, Video, Flame, ExternalLink
 } from 'lucide-react';
 import { Footer } from './Footer';
 import { WhatsAppButton } from './WhatsAppButton';
@@ -732,9 +732,21 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
 
         {/* SECTION 8: REVIEWS */}
         <section id="sec-reviews" className="space-y-3 sm:space-y-6">
-          <div>
-            <span className="text-xs font-bold text-[#2956B1] uppercase tracking-wider">Community Feedback</span>
-            <h2 className="text-lg sm:text-2xl font-extrabold text-slate-900 mt-0.5">Verified Traveler Reviews</h2>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span className="text-xs font-bold text-[#2956B1] uppercase tracking-wider">Community Feedback</span>
+              <h2 className="text-lg sm:text-2xl font-extrabold text-slate-900 mt-0.5">Verified Traveler Reviews</h2>
+            </div>
+            <a
+              href="https://www.google.com/maps/place/Trip+with+Safarwala/@28.7042252,77.3164692,727m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390cfb638fb19bb7:0x60c61092acccf2fa!8m2!3d28.7042206!4d77.3213401!16s%2Fg%2F11zcxnnpgk?entry=ttu"
+              target="_blank"
+              rel="noreferrer"
+              className="bg-white hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-extrabold px-3.5 py-2 rounded-xl flex items-center gap-2 shadow-sm w-fit transition cursor-pointer"
+            >
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" className="w-3.5 h-3.5 object-contain" />
+              <span>See 2,580+ Reviews on Google Maps</span>
+              <ExternalLink className="w-3.5 h-3.5 text-[#2956B1]" />
+            </a>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-6">

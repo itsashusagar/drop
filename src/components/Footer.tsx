@@ -161,6 +161,18 @@ export const Footer: React.FC = () => {
                 <Mail className="w-4 h-4 text-[#2956B1] shrink-0" />
                 <span className="truncate">delhi@tripwithsafarwala.com</span>
               </div>
+              <a
+                href="https://www.google.com/maps/place/Trip+with+Safarwala/@28.7042252,77.3164692,727m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390cfb638fb19bb7:0x60c61092acccf2fa!8m2!3d28.7042206!4d77.3213401!16s%2Fg%2F11zcxnnpgk?entry=ttu"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between bg-blue-50/70 hover:bg-blue-100/80 p-2.5 rounded-xl border border-blue-200 text-slate-900 font-extrabold text-xs transition cursor-pointer"
+              >
+                <div className="flex items-center gap-2">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" className="w-4 h-4 object-contain" />
+                  <span>Google Reviews (4.9★)</span>
+                </div>
+                <span className="text-[#2956B1] text-[10px]">View Maps →</span>
+              </a>
             </div>
           </div>
 
