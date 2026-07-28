@@ -91,7 +91,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
   // WhatsApp Checkout text
   const handleWhatsAppCheckout = () => {
     const text = `Hello Trip With Safarwala! I want to book:\n\n🌴 *${pkg.title}*\n📅 *Batch Date*: ${selectedBatch.startDate} to ${selectedBatch.endDate}\n👥 *Travelers*: ${adults} Adult(s), ${children} Child(ren)\n🛏️ *Room Type*: ${roomType === 'double' ? 'Double Sharing' : 'Triple Sharing'}\n➕ *Add-ons*: ${selectedAddons.length > 0 ? selectedAddons.join(', ') : 'None'}\n🎟️ *Coupon Applied*: ${couponApplied ? '₹' + couponDiscount : 'None'}\n💰 *Grand Total Payable*: ₹${grandTotal.toLocaleString('en-IN')}\n\nPlease share booking confirmation & payment link.`;
-    window.open(`https://wa.me/919876543210?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/919560798341?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   // Related Packages (excluding current)
@@ -431,7 +431,7 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     onClick={() => onOpenInquiry(pkg.title)}
                     className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-extrabold text-xs py-3 rounded-xl border border-emerald-200 flex items-center justify-center gap-2 transition cursor-pointer"
                   >
-                    <MessageCircle className="w-4 h-4 fill-emerald-600 text-emerald-600" />
+                    <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
                     <span>Enquire on WhatsApp</span>
                   </button>
                 </div>
@@ -760,9 +760,9 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={handleWhatsAppCheckout}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl flex items-center gap-1"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl flex items-center gap-1.5"
           >
-            <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
+            <img src="/whatsapp.png" alt="WhatsApp" className="w-4 h-4 object-contain" />
             <span>Book</span>
           </button>
 

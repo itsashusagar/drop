@@ -32,7 +32,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
 
   const handleWhatsAppBooking = () => {
     const message = `Hello Trip With Safarwala! I want to book/enquire about:\n\n🌴 Trip: ${pkg.title}\n📅 Batch Date: ${selectedBatch.startDate} to ${selectedBatch.endDate}\n👥 Travelers: ${travelersCount} Person(s)\n💰 Total Estimated Price: ₹${totalPrice.toLocaleString('en-IN')}\n\nPlease share the detailed PDF itinerary and booking details.`;
-    window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/919560798341?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
@@ -102,7 +102,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({
                   onClick={handleWhatsAppBooking}
                   className="bg-[#2956B1] hover:bg-blue-700 text-white font-extrabold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 shadow-md"
                 >
-                  <MessageCircle className="w-4 h-4 fill-white" />
+                  <img src="/whatsapp.png" alt="WhatsApp" className="w-4.5 h-4.5 object-contain" />
                   <span>Book Now</span>
                 </button>
               </div>

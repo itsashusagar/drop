@@ -113,7 +113,7 @@ export const WishlistDrawer: React.FC<WishlistDrawerProps> = ({
                           className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-200"
                           title="Enquire"
                         >
-                          <MessageCircle className="w-3.5 h-3.5 fill-emerald-600 text-emerald-600" />
+                          <img src="/whatsapp.png" alt="WhatsApp" className="w-4 h-4 object-contain" />
                         </button>
 
                         <button

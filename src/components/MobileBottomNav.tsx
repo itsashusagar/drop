@@ -57,8 +57,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         onClick={onOpenInquiry}
         className="flex flex-col items-center gap-1 text-[11px] font-bold text-emerald-600"
       >
-        <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center">
-          <MessageCircle className="w-4 h-4 fill-emerald-600 text-emerald-600" />
+        <div className="w-6 h-6 flex items-center justify-center">
+          <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
         </div>
         <span>Book</span>
       </button>

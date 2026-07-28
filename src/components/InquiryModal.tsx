@@ -30,7 +30,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
     setTimeout(() => {
       // Auto launch WhatsApp after lead capture
       const text = `Hi Trip With Safarwala! My name is ${name}. I am planning a trip for ${destination} in ${month} for ${travelers} traveler(s). Please call me at ${phone}.`;
-      window.open(`https://wa.me/919876543210?text=${encodeURIComponent(text)}`, '_blank');
+      window.open(`https://wa.me/919560798341?text=${encodeURIComponent(text)}`, '_blank');
       setSubmitted(false);
       onClose();
     }, 1200);
@@ -91,7 +91,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+91 98765 43210"
+                  placeholder="+91 95607 98341"
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#2956B1]"
                 />
               </div>
@@ -151,7 +151,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
               type="submit"
               className="w-full bg-gradient-to-r from-[#2956B1] to-blue-600 hover:from-blue-700 hover:to-blue-800 text-white font-extrabold text-xs py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-md shadow-[#2956B1]/20 transition"
             >
-              <MessageCircle className="w-4 h-4 text-white fill-white" />
+              <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
               <span>Get Free PDF Itinerary & Quote</span>
             </button>
           </form>

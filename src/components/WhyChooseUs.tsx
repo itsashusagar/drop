@@ -117,12 +117,12 @@ export const WhyChooseUs: React.FC = () => {
           </div>
 
           <a
-            href="https://wa.me/919876543210?text=Hi%20Trip%20With%20Safarwala!%20I%20am%20a%20solo%20traveler%20and%20want%20to%20know%20more%20about%20safety%20and%20group%20batches."
+            href="https://wa.me/919560798341?text=Hi%20Trip%20With%20Safarwala!%20I%20am%20a%20solo%20traveler%20and%20want%20to%20know%20more%20about%20safety%20and%20group%20batches."
             target="_blank"
             rel="noreferrer"
             className="bg-[#2956B1] hover:bg-blue-700 text-white font-extrabold text-xs px-6 py-3.5 rounded-2xl shadow-md flex items-center gap-2 transition whitespace-nowrap active:scale-95"
           >
-            <MessageCircle className="w-4 h-4 fill-white text-white" />
+            <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
             <span>Chat With Female Captain</span>
           </a>
         </div>

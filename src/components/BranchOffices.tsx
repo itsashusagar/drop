@@ -10,17 +10,17 @@ import {
 export const BranchOffices: React.FC = () => {
   const delhiBranch = {
     name: 'Delhi Flagship Headquarters',
-    city: 'Connaught Place, New Delhi',
+    city: 'Dilshad Garden, New Delhi',
     tag: 'Main Operational Hub & Travel Lounge',
-    address: '3rd Floor, Outer Circle, Connaught Place, Near Rajiv Chowk Metro Gate 4, New Delhi - 110001',
-    phone: '+91 98765 43210',
-    altPhone: '+91 98765 43211',
+    address: 'Near Dilshad Garden Metro Station, Grand Trunk Road, Shahdara, New Delhi - 110095',
+    phone: '+91 95607 98341',
+    altPhone: '+91 95607 98341',
     email: 'delhi@tripwithsafarwala.com',
     hours: 'Mon - Sat: 10:00 AM - 7:30 PM (Sun by Appointment)',
     status: 'Open Now • Closes at 7:30 PM',
-    metro: '2 Mins walk from Rajiv Chowk Metro Station Gate 4',
-    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.9976378415714!2d77.21672131508246!3d28.632742982417745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd37b741d057%3A0xc15e2195f32467d7!2sConnaught%20Place%2C%20New%20Delhi%2C%20Delhi%20110001!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin',
-    directMapUrl: 'https://maps.google.com/?q=Connaught+Place+New+Delhi',
+    metro: '1 Min walk from Dilshad Garden Metro Station (Red Line)',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.0827293529367!2d77.31976867625807!3d28.6756616822292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb638fb19bb7%3A0x8cf6b485d9bf16c!2sDilshad%20Garden%20Metro%20Station!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin',
+    directMapUrl: 'https://maps.google.com/?q=Dilshad+Garden+Metro+Station+New+Delhi',
     officeImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop',
   };
 
@@ -43,7 +43,7 @@ export const BranchOffices: React.FC = () => {
             Contact Our Delhi Headquarters
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-            Walk into our flagship Delhi office at Connaught Place for a hot cup of coffee and design your custom itinerary with senior trip captains.
+            Walk into our flagship Delhi office near Dilshad Garden Metro Station for a hot cup of coffee and design your custom itinerary with senior trip captains.
           </p>
         </div>
 
@@ -162,12 +162,12 @@ export const BranchOffices: React.FC = () => {
               </a>
 
               <a
-                href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello Trip With Safarwala! I want to visit your Delhi Connaught Place Office or schedule a meeting.`)}`}
+                href={`https://wa.me/919560798341?text=${encodeURIComponent(`Hello Trip With Safarwala! I want to visit your Delhi Dilshad Garden Office or schedule a meeting.`)}`}
                 target="_blank"
                 rel="noreferrer"
                 className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-extrabold text-xs py-3.5 px-4 rounded-xl border border-emerald-200 flex items-center justify-center gap-2 transition"
               >
-                <MessageCircle className="w-4 h-4 fill-emerald-600 text-emerald-600" />
+                <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
                 <span>Schedule Visit</span>
               </a>
             </div>
@@ -181,7 +181,7 @@ export const BranchOffices: React.FC = () => {
             <div className="absolute top-4 left-4 right-4 z-10 bg-white/95 backdrop-blur-md border border-slate-200 p-3 rounded-2xl flex items-center justify-between shadow-lg">
               <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
                 <Navigation className="w-4 h-4 text-[#2956B1] animate-bounce" />
-                <span>Connaught Place, New Delhi Map</span>
+                <span>Dilshad Garden Metro Station, New Delhi Map</span>
               </div>
 
               <a

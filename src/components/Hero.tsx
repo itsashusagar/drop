@@ -110,7 +110,7 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={() => onOpenInquiry('Custom Itinerary Request')}
                 className="w-full sm:w-auto bg-white/95 hover:bg-white text-slate-900 font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 transition cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-600 fill-emerald-600" />
+                <img src="/whatsapp.png" alt="WhatsApp" className="w-5 h-5 object-contain" />
                 <span>WhatsApp Quote</span>
               </button>
             </div>
