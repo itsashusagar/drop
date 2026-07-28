@@ -8,7 +8,7 @@ import {
   MapPin, Clock, Star, Heart, ArrowRight, Check, X,
   Calendar, Sparkles, Building, Car, Utensils, Compass, UserCheck,
   CheckCircle2, ChevronDown, ChevronUp, Share2, ArrowLeft,
-  ShieldCheck, CheckCircle, Video, Flame, ExternalLink
+  ShieldCheck, CheckCircle, Video, Flame, ExternalLink, Download, FileText
 } from 'lucide-react';
 import { Footer } from './Footer';
 import { WhatsAppButton } from './WhatsAppButton';
@@ -91,6 +91,119 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
     window.open(`https://wa.me/919560798341?text=${encodeURIComponent(text)}`, '_blank');
   };
 
+  // Generate & Download PDF Itinerary Brochure
+  const handleDownloadPDF = () => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+
+    const itineraryHtml = pkg.itinerary
+      .map(
+        (day) => `
+        <div style="margin-bottom: 14px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; background: #f8fafc;">
+          <h4 style="margin: 0 0 6px 0; color: #2956B1; font-size: 14px; font-weight: 800;">Day ${day.day}: ${day.title}</h4>
+          <p style="margin: 0 0 8px 0; font-size: 12px; color: #334155; line-height: 1.5;">${day.description}</p>
+          <div style="font-size: 11px; font-weight: bold; color: #475569;">
+            ${day.meals ? `<span>🍲 Meals: ${day.meals.join(', ')}</span> &nbsp;|&nbsp; ` : ''}
+            ${day.stay ? `<span>🏨 Stay: ${day.stay}</span>` : ''}
+          </div>
+        </div>
+      `
+      )
+      .join('');
+
+    const inclusionsHtml = pkg.inclusions
+      .map((inc) => `<li style="margin-bottom: 4px; color: #166534;">✔ ${inc}</li>`)
+      .join('');
+
+    const exclusionsHtml = pkg.exclusions
+      .map((exc) => `<li style="margin-bottom: 4px; color: #991b1b;">✖ ${exc}</li>`)
+      .join('');
+
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>${pkg.title} - Trip With Safarwala Official Itinerary Brochure</title>
+          <style>
+            body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; padding: 24px; color: #0f172a; line-height: 1.5; }
+            .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #2956B1; padding-bottom: 16px; margin-bottom: 20px; }
+            .logo { font-size: 22px; font-weight: 900; color: #2956B1; }
+            .logo span { color: #0f172a; }
+            .contact { text-align: right; font-size: 11px; color: #475569; }
+            .title { font-size: 24px; font-weight: 900; color: #0f172a; margin-bottom: 4px; }
+            .tagline { font-size: 13px; color: #64748b; margin-bottom: 16px; }
+            .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: #eff6ff; padding: 12px; border-radius: 10px; border: 1px solid #bfdbfe; margin-bottom: 20px; font-size: 11px; font-weight: bold; }
+            .section-heading { font-size: 16px; font-weight: 800; color: #2956B1; margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
+            .price-box { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 14px; border-radius: 10px; margin-bottom: 20px; font-size: 12px; }
+            .checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; font-size: 11px; }
+            .footer { text-align: center; border-top: 1px solid #e2e8f0; padding-top: 16px; margin-top: 28px; font-size: 10px; color: #64748b; }
+            @media print {
+              body { padding: 0; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div>
+              <div class="logo">TRIP WITH <span>SAFARWALA</span></div>
+              <div style="font-size: 10px; color: #2956B1; font-weight: bold;">OFFICIAL TRAVEL BROCHURE & ITINERARY</div>
+            </div>
+            <div class="contact">
+              <div>📞 <strong>+91 95607 98341</strong></div>
+              <div>📍 Dilshad Garden Metro Station, Shahdara, New Delhi - 110095</div>
+              <div>🌐 www.tripwithsafarwala.com</div>
+            </div>
+          </div>
+
+          <div class="title">${pkg.title}</div>
+          <div class="tagline">${pkg.tagline}</div>
+
+          <div class="spec-grid">
+            <div>⏱️ <strong>Duration:</strong> ${pkg.durationDays} Days / ${pkg.durationNights} Nights</div>
+            <div>📍 <strong>Pickup/Drop:</strong> ${pkg.pickupLocation} to ${pkg.dropLocation}</div>
+            <div>🛡️ <strong>Safety:</strong> 100% Solo Female Friendly</div>
+          </div>
+
+          <div class="price-box">
+            <h4 style="margin:0 0 6px 0; color: #166534; font-size: 14px;">💰 Package Pricing & Departure Batches</h4>
+            <div>Double Sharing Room: <strong>₹${pkg.discountedPrice.toLocaleString('en-IN')} per person</strong></div>
+            <div>Triple Sharing Room: <strong>₹${(pkg.discountedPrice - 500).toLocaleString('en-IN')} per person</strong></div>
+            <div style="margin-top: 4px; font-size: 10px; color: #15803d;">✔ Exclusive Discount Code 'SAFARWALA2000' included.</div>
+          </div>
+
+          <div class="section-heading">📌 Tour Overview</div>
+          <p style="font-size: 12px; color: #334155; margin-bottom: 16px;">${pkg.overview}</p>
+
+          <div class="section-heading">📅 Day-by-Day Detailed Schedule</div>
+          ${itineraryHtml}
+
+          <div class="checklist-grid">
+            <div style="background: #f0fdf4; padding: 12px; border-radius: 10px; border: 1px solid #bbf7d0;">
+              <h4 style="margin: 0 0 6px 0; color: #166534; font-size: 13px;">Inclusions</h4>
+              <ul style="padding-left: 14px; margin: 0;">${inclusionsHtml}</ul>
+            </div>
+            <div style="background: #fef2f2; padding: 12px; border-radius: 10px; border: 1px solid #fecaca;">
+              <h4 style="margin: 0 0 6px 0; color: #991b1b; font-size: 13px;">Exclusions</h4>
+              <ul style="padding-left: 14px; margin: 0;">${exclusionsHtml}</ul>
+            </div>
+          </div>
+
+          <div class="footer">
+            <p><strong>Trip With Safarwala Headquarters:</strong> Near Dilshad Garden Metro Station, Grand Trunk Road, Shahdara, New Delhi - 110095</p>
+            <p>For instant booking confirmation & customized seats, Call / WhatsApp <strong>+91 95607 98341</strong>.</p>
+          </div>
+
+          <script>
+            window.onload = function() {
+              window.print();
+            };
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  };
+
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -129,6 +242,15 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <button
+              onClick={handleDownloadPDF}
+              className="flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-[#2956B1] hover:bg-blue-100 transition font-bold px-2.5 py-1 rounded-lg text-xs cursor-pointer shadow-sm"
+              title="Download PDF Itinerary Brochure"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>PDF Brochure</span>
+            </button>
+
             <button
               onClick={() => setIsWishlisted(!isWishlisted)}
               className="flex items-center gap-1 text-slate-600 hover:text-[#2956B1] transition font-bold"
@@ -439,6 +561,14 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
                     <img src="/whatsapp.png" alt="WhatsApp" className="w-4 h-4 object-contain" />
                     <span>Enquire on WhatsApp</span>
                   </button>
+
+                  <button
+                    onClick={handleDownloadPDF}
+                    className="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold text-xs py-2.5 rounded-xl border border-slate-200 flex items-center justify-center gap-2 transition cursor-pointer"
+                  >
+                    <FileText className="w-4 h-4 text-[#2956B1]" />
+                    <span>Download PDF Brochure</span>
+                  </button>
                 </div>
 
               </div>
@@ -530,7 +660,14 @@ export const PackageDetailPage: React.FC<PackageDetailPageProps> = ({
               <span className="text-xs font-bold text-[#2956B1] uppercase tracking-widest">Day by Day Schedule</span>
               <h2 className="text-lg sm:text-3xl font-extrabold text-slate-900 mt-0.5">Detailed Itinerary Timeline</h2>
             </div>
-            <div className="flex gap-2 text-xs font-bold text-[#2956B1]">
+            <div className="flex items-center gap-2 sm:gap-3 text-xs font-bold text-[#2956B1]">
+              <button
+                onClick={handleDownloadPDF}
+                className="flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-[#2956B1] px-3 py-1.5 rounded-xl hover:bg-blue-100 transition cursor-pointer shadow-sm"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>PDF Itinerary</span>
+              </button>
               <button onClick={() => setOpenDays(pkg.itinerary.map((d) => d.day))} className="hover:underline">Expand All</button>
               <span>|</span>
               <button onClick={() => setOpenDays([])} className="hover:underline">Collapse All</button>
