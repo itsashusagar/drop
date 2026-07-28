@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Phone, Heart, Menu, X, Sparkles, MapPin, Building2 } from 'lucide-react';
+import { Phone, Heart, Menu, X, Sparkles, MapPin, Building2, Compass, ArrowRight } from 'lucide-react';
 
 interface NavbarProps {
   wishlistCount: number;
@@ -172,9 +172,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Request Callback */}
             <button
               onClick={() => onOpenInquiry()}
-              className="bg-gradient-to-r from-[#2956B1] via-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs px-5 py-2 rounded-full shadow-lg shadow-[#2956B1]/25 hover:shadow-xl hover:shadow-[#2956B1]/40 transition-all duration-300 active:scale-95 cursor-pointer"
+              className="bg-gradient-to-r from-[#2956B1] via-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs px-5 py-2 rounded-full shadow-lg shadow-[#2956B1]/25 hover:shadow-xl hover:shadow-[#2956B1]/40 transition-all duration-300 active:scale-95 cursor-pointer flex items-center gap-1.5"
             >
-              Plan My Trip
+              <Compass className="w-3.5 h-3.5 text-blue-200" />
+              <span>Plan My Trip</span>
+              <ArrowRight className="w-3.5 h-3.5 stroke-[3] ml-0.5" />
             </button>
           </div>
 
@@ -268,9 +270,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenInquiry();
               }}
-              className="w-full bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-bold text-xs py-3 rounded-full shadow-md"
+              className="w-full bg-gradient-to-r from-[#2956B1] to-blue-600 text-white font-bold text-xs py-3 rounded-full shadow-md flex items-center justify-center gap-2"
             >
-              Request Custom Itinerary
+              <Compass className="w-4 h-4 text-blue-200" />
+              <span>Request Custom Itinerary</span>
+              <ArrowRight className="w-3.5 h-3.5 stroke-[3]" />
             </button>
             <a
               href="tel:+919560798341"
