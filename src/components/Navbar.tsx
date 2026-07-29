@@ -81,65 +81,40 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Desktop Nav Links - Apple Pill Style */}
           <nav className="hidden lg:flex items-center gap-1.5 text-xs font-bold text-slate-700 bg-slate-900/[0.04] p-1.5 rounded-full border border-slate-900/10 backdrop-blur-xl shadow-inner">
-            <a
-              href="#destinations"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('categories');
-              }}
+            <Link
+              href="/destinations"
               className="hover:text-[#2956B1] hover:bg-white/90 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
             >
               <MapPin className="w-3.5 h-3.5 text-[#2956B1]" />
               <span>Destinations</span>
-            </a>
+            </Link>
 
-            <a
-              href="#packages"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('packages');
+            <Link
+              href="/#packages"
+              onClick={() => {
+                if (onGoHome) onGoHome();
               }}
               className="hover:text-[#2956B1] hover:bg-white/90 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
             >
               <Package className="w-3.5 h-3.5 text-[#2956B1]" />
               <span>Packages</span>
-            </a>
+            </Link>
 
-            <a
-              href="#captains"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('captains');
-              }}
+            <Link
+              href="/about"
               className="hover:text-[#2956B1] hover:bg-white/90 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
             >
               <UserCheck className="w-3.5 h-3.5 text-[#2956B1]" />
-              <span>Captains</span>
-            </a>
+              <span>About Us</span>
+            </Link>
 
-            <a
-              href="#branches"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('branches');
-              }}
+            <Link
+              href="/contact"
               className="hover:text-[#2956B1] hover:bg-white/90 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
             >
               <Building2 className="w-3.5 h-3.5 text-[#2956B1]" />
-              <span>Branches</span>
-            </a>
-
-            <a
-              href="#reviews"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('reviews');
-              }}
-              className="hover:text-[#2956B1] hover:bg-white/90 px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer hover:shadow-sm"
-            >
-              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
-              <span>Reviews</span>
-            </a>
+              <span>Contact Us</span>
+            </Link>
           </nav>
 
           {/* Action Buttons - Apple Capsule Glass Controls */}
@@ -205,61 +180,37 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Drawer Menu - Ultra Frosted Glass */}
       {mobileMenuOpen && (
         <div className="sm:hidden bg-white/85 backdrop-blur-3xl saturate-180 border-b border-white/50 px-4 pt-3 pb-6 space-y-3 shadow-2xl animate-fadeIn">
-          <a
-            href="#destinations"
-            onClick={(e) => {
-              e.preventDefault();
-              setMobileMenuOpen(false);
-              handleNavClick('categories');
-            }}
+          <Link
+            href="/destinations"
+            onClick={() => setMobileMenuOpen(false)}
             className="block py-2 text-xs font-bold text-slate-800 hover:text-[#2956B1]"
           >
             Explore Destinations
-          </a>
-          <a
-            href="#packages"
-            onClick={(e) => {
-              e.preventDefault();
+          </Link>
+          <Link
+            href="/#packages"
+            onClick={() => {
               setMobileMenuOpen(false);
-              handleNavClick('packages');
+              if (onGoHome) onGoHome();
             }}
             className="block py-2 text-xs font-bold text-slate-800 hover:text-[#2956B1]"
           >
             Group Packages
-          </a>
-          <a
-            href="#why-us"
-            onClick={(e) => {
-              e.preventDefault();
-              setMobileMenuOpen(false);
-              handleNavClick('why-us');
-            }}
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => setMobileMenuOpen(false)}
             className="block py-2 text-xs font-bold text-slate-800 hover:text-[#2956B1]"
           >
-            Why Trip With Safarwala
-          </a>
-          <a
-            href="#branches"
-            onClick={(e) => {
-              e.preventDefault();
-              setMobileMenuOpen(false);
-              handleNavClick('branches');
-            }}
+            About Safarwala
+          </Link>
+          <Link
+            href="/contact"
+            onClick={() => setMobileMenuOpen(false)}
             className="block py-2 text-xs font-bold text-slate-800 hover:text-[#2956B1]"
           >
-            Our Delhi Branch
-          </a>
-          <a
-            href="#reviews"
-            onClick={(e) => {
-              e.preventDefault();
-              setMobileMenuOpen(false);
-              handleNavClick('reviews');
-            }}
-            className="block py-2 text-xs font-bold text-slate-800 hover:text-[#2956B1]"
-          >
-            Customer Reviews
-          </a>
+            Contact & Delhi Branch
+          </Link>
 
           <div className="pt-3 border-t border-slate-900/10 flex flex-col gap-2">
             <button

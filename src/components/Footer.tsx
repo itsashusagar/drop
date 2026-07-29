@@ -191,11 +191,15 @@ export const Footer: React.FC = () => {
               <ShieldCheck className="w-4 h-4 text-emerald-600" /> UPI / Cards / Razorpay Secured
             </span>
             <span>•</span>
-            <a href="#" className="hover:text-[#2956B1]">Privacy Policy</a>
+            <Link href="/about" className="hover:text-[#2956B1]">About Us</Link>
             <span>•</span>
-            <a href="#" className="hover:text-[#2956B1]">Terms of Service</a>
+            <Link href="/destinations" className="hover:text-[#2956B1]">Destinations</Link>
             <span>•</span>
-            <a href="#" className="hover:text-[#2956B1]">Cancellation Policy</a>
+            <Link href="/contact" className="hover:text-[#2956B1]">Contact Us</Link>
+            <span>•</span>
+            <Link href="/privacy-policy" className="hover:text-[#2956B1]">Privacy Policy</Link>
+            <span>•</span>
+            <Link href="/terms" className="hover:text-[#2956B1]">Terms of Service</Link>
           </div>
         </div>
 
